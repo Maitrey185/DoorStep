@@ -9,13 +9,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  hive: ^1.0.0
+  hive_flutter: ^0.3.1
+  path_provider: ^1.6.15
 
   cupertino_icons: ^1.0.0
   carousel_pro: ^1.0.0
+  flutter_svg: ^0.22.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  hive_generator: ^0.8.2
 
   flutter_config: ^1.0.8
   get: ^3.26.0

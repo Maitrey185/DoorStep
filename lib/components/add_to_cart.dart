@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shape_cam/detailed_product.dart';
 import 'package:shape_cam/constants.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class AddToCart extends StatelessWidget {
   const AddToCart({

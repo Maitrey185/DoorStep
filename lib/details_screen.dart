@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shape_cam/detailed_product.dart';
 import 'components/details_body.dart';
 import 'package:shape_cam/constants.dart';
+import 'package:get/get.dart';
+import 'package:shape_cam/cart/cart_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
   final DetailedProduct product;
@@ -35,7 +37,9 @@ class DetailsScreen extends StatelessWidget {
             Icons.shopping_cart,
             size: 30.0,
           ),
-          onPressed: () {},
+          onPressed: (){
+    Get.to(CartScreen());
+    },
         ),
         SizedBox(width: kDefaultPaddin / 2)
       ],

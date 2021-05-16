@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'login_screen.dart';
 import 'profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:shape_cam/cart/cart_screen.dart';
 class MainShop extends StatelessWidget {
   final id;
   final token;
@@ -30,7 +30,8 @@ class MainShop extends StatelessWidget {
                       Icons.shopping_cart,
                       color: Colors.white,
                     ),
-                    onPressed: () {})
+                    onPressed: () {
+                      Get.to(CartScreen());})
               ],
             ),
             drawer: SafeArea(
