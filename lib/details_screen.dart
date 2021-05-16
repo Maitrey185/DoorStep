@@ -24,9 +24,10 @@ class DetailsScreen extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.orangeAccent,
       elevation: 0,
-      leading: FlatButton(
+      leading: TextButton(
         child: Icon(
           Icons.chevron_left,
+          color: Colors.white,
           size: 40.0,
         ),
         onPressed: () => Navigator.pop(context),
@@ -37,9 +38,9 @@ class DetailsScreen extends StatelessWidget {
             Icons.shopping_cart,
             size: 30.0,
           ),
-          onPressed: (){
-    Get.to(CartScreen());
-    },
+          onPressed: () {
+            Get.to(CartScreen());
+          },
         ),
         SizedBox(width: kDefaultPaddin / 2)
       ],

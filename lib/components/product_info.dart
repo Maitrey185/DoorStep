@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:shape_cam/cart/cartItem.dart';
+import 'package:shape_cam/cart/cart_screen.dart';
 import 'package:shape_cam/constants.dart';
 import '../detailed_product.dart';
 import 'package:shape_cam/detailed_product.dart';
 import 'package:rating_bar/rating_bar.dart';
+import 'package:get/get.dart';
 
-class CartCounter extends StatefulWidget {
-  const CartCounter({
+class ProductInfo extends StatefulWidget {
+  const ProductInfo({
     Key key,
     @required this.product,
   }) : super(key: key);
   final DetailedProduct product;
 
   @override
-  _CartCounterState createState() => _CartCounterState();
+  _ProductInfoState createState() => _ProductInfoState();
 }
 
-class _CartCounterState extends State<CartCounter> {
+class _ProductInfoState extends State<ProductInfo> {
   @override
   void initState() {
     super.initState();
@@ -43,8 +45,6 @@ class _CartCounterState extends State<CartCounter> {
                           color: Color(0xFF356C95),
                           isSelected: true,
                         ),
-                        // ColorDot(color: Color(0xFFF8C078)),
-                        // ColorDot(color: Color(0xFFA29B9B)),
                       ],
                     ),
                   ],
@@ -145,6 +145,22 @@ class _CartCounterState extends State<CartCounter> {
                       final cartItem = CartItem(
                           product: widget.product, itemCount: numOfItems);
                       addToCart(cartItem);
+                      return showDialog(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: Text("Added to Cart"),
+                          content: Text(
+                              "The product is successfully added to yor cart."),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(ctx).pop();
+                              },
+                              child: Text("Continue"),
+                            ),
+                          ],
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -155,7 +171,12 @@ class _CartCounterState extends State<CartCounter> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18)),
                       color: Colors.orangeAccent,
-                      onPressed: () {},
+                      onPressed: () {
+                        final cartItem = CartItem(
+                            product: widget.product, itemCount: numOfItems);
+                        addToCart(cartItem);
+                        Get.to(CartScreen());
+                      },
                       child: Text(
                         "Buy  Now".toUpperCase(),
                         style: TextStyle(

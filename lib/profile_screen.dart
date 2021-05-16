@@ -19,7 +19,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   var addresses = [];
 
   bool _status = true;
-  final dataController = Get.put(UserData());
+  final dataController =
+      Get.put(UserData(id: Get.arguments[0], token: Get.arguments[1]));
 
   Future<void> updateUserData() async {
     http.Response response = await http.patch(
@@ -41,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return GetX<UserData>(
-      init: UserData(),
+      init: UserData(id: Get.arguments[0], token: Get.arguments[1]),
       builder: (controller) {
         return Scaffold(
             body: SafeArea(

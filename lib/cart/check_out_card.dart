@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive/hive.dart';
+import 'cartItem.dart';
 import 'default_button.dart';
-
-import 'constants.dart';
 import 'size_config.dart';
 
 class CheckoutCard extends StatelessWidget {
@@ -12,6 +11,12 @@ class CheckoutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double total = 0.0;
+    var cartBox = Hive.box('cartBox');
+    for (int i = 0; i < cartBox.length; i++) {
+      final cartItem = cartBox.getAt(i) as CartItem;
+      total = total + cartItem.product.price * cartItem.itemCount;
+    }
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: getProportionateScreenWidth(15),
@@ -38,29 +43,6 @@ class CheckoutCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(10),
-                  height: getProportionateScreenWidth(40),
-                  width: getProportionateScreenWidth(40),
-                  decoration: BoxDecoration(
-                    color: Color(0xFFF5F6F9),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: SvgPicture.asset("assets/icons/receipt.svg"),
-                ),
-                Spacer(),
-                Text("Add voucher code"),
-                const SizedBox(width: 10),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 12,
-                  color: kTextColor,
-                )
-              ],
-            ),
-            SizedBox(height: getProportionateScreenHeight(20)),
-            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text.rich(
@@ -68,7 +50,7 @@ class CheckoutCard extends StatelessWidget {
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$337.15",
+                        text: "₹${total.toStringAsFixed(2)}",
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],

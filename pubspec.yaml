@@ -16,11 +16,14 @@ dependencies:
   cupertino_icons: ^1.0.0
   carousel_pro: ^1.0.0
   flutter_svg: ^0.22.0
+  uuid: ^3.0.4
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   hive_generator: ^0.8.2
+  build_runner:
 
   flutter_config: ^1.0.8
   get: ^3.26.0
@@ -30,7 +33,6 @@ dev_dependencies:
   rating_bar: ^0.2.0
   font_awesome_flutter: ^8.12.0
   shared_preferences: ^0.5.12+4
-
 
 
 flutter:

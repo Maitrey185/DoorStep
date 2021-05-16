@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shape_cam/constants.dart';
 import 'package:shape_cam/detailed_product.dart';
-import 'add_to_cart.dart';
-import 'color_and_size.dart';
-import 'counter_with_fav_btn.dart';
-import 'description.dart';
 import 'product_title_with_image.dart';
-import 'cart_counter.dart';
+import 'product_info.dart';
+
 class Body extends StatelessWidget {
   final DetailedProduct product;
 
@@ -36,19 +33,7 @@ class Body extends StatelessWidget {
                       topRight: Radius.circular(24),
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      //ColorAndSize(product: product),
-                      //SizedBox(height: kDefaultPaddin / 2),
-                      //Description(product: product),
-                      //SizedBox(height: kDefaultPaddin / 2),
-                      CartCounter(product: product),
-                      //CounterWithFavBtn(product: product),
-                      //SizedBox(height: kDefaultPaddin / 2),
-                      //AddToCart(product: product)
-                    ],
-                  ),
+                  child: ProductInfo(product: product),
                 ),
                 ProductTitleWithImage(product: product)
               ],
