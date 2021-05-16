@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shape_cam/detailed_product.dart';
-import 'components/details_body.dart';
+import 'package:shape_cam/product/detailed_product.dart';
+import '../components/details_body.dart';
 import 'package:shape_cam/constants.dart';
 import 'package:get/get.dart';
 import 'package:shape_cam/cart/cart_screen.dart';

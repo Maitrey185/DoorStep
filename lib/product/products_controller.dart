@@ -1,4 +1,4 @@
-import 'package:shape_cam/products.dart';
+import 'package:shape_cam/product/products.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'dart:convert';

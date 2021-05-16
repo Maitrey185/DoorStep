@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:shape_cam/detailed_product.dart';
+import 'package:shape_cam/product/detailed_product.dart';
 import 'package:shape_cam/welcome_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter_config/flutter_config.dart';

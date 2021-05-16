@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:shape_cam/detailed_product.dart';
+import 'package:shape_cam/product/detailed_product.dart';
 part 'cartItem.g.dart';
 
 @HiveType(typeId: 0)

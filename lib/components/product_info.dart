@@ -3,8 +3,8 @@ import 'package:hive/hive.dart';
 import 'package:shape_cam/cart/cartItem.dart';
 import 'package:shape_cam/cart/cart_screen.dart';
 import 'package:shape_cam/constants.dart';
-import '../detailed_product.dart';
-import 'package:shape_cam/detailed_product.dart';
+import '../product/detailed_product.dart';
+import 'package:shape_cam/product/detailed_product.dart';
 import 'package:rating_bar/rating_bar.dart';
 import 'package:get/get.dart';
 

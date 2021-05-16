@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shape_cam/details_screen.dart';
-import 'package:shape_cam/detailed_product.dart';
+import 'package:shape_cam/product/details_screen.dart';
+import 'package:shape_cam/product/detailed_product.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_config/flutter_config.dart';

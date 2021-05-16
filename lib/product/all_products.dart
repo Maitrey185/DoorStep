@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shape_cam/products_controller.dart';
+import 'package:shape_cam/product/products_controller.dart';
 import 'package:get/get.dart';
 
 class AllProducts extends StatelessWidget {

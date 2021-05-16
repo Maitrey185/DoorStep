@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-import 'all_products.dart';
+import 'product/all_products.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:shape_cam/user_data.dart';
 import 'package:get/get.dart';
@@ -8,6 +8,7 @@ import 'login_screen.dart';
 import 'profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shape_cam/cart/cart_screen.dart';
+
 class MainShop extends StatelessWidget {
   final id;
   final token;
@@ -31,7 +32,8 @@ class MainShop extends StatelessWidget {
                       color: Colors.white,
                     ),
                     onPressed: () {
-                      Get.to(CartScreen());})
+                      Get.to(CartScreen());
+                    })
               ],
             ),
             drawer: SafeArea(
