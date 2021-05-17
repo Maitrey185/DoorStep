@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'cartItem.dart';
 import 'default_button.dart';
 import 'size_config.dart';
 
 class CheckoutCard extends StatelessWidget {
-  const CheckoutCard({
-    Key key,
-  }) : super(key: key);
+  CheckoutCard({this.total});
+  final double total;
 
   @override
   Widget build(BuildContext context) {
-    double total = 0.0;
-    var cartBox = Hive.box('cartBox');
-    for (int i = 0; i < cartBox.length; i++) {
-      final cartItem = cartBox.getAt(i) as CartItem;
-      total = total + cartItem.product.price * cartItem.itemCount;
-    }
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: getProportionateScreenWidth(15),
