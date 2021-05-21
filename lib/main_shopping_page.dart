@@ -42,7 +42,7 @@ class MainShop extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.only(top: 42, bottom: 16.0),
                       child: Column(
                         children: [
                           CircleAvatar(
@@ -69,22 +69,22 @@ class MainShop extends StatelessWidget {
                       height: 1,
                       thickness: 1,
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Check and Update your Profile',
+                      ),
+                    ),
                     ListTile(
-                      leading: Icon(Icons.account_circle_outlined, size: 30.0),
+                      leading: Icon(
+                        Icons.account_circle_outlined,
+                        size: 30.0,
+                        color: Colors.black,
+                      ),
                       title: Text('My Profile'),
                       onTap: () {
                         Get.to(ProfileScreen(), arguments: [id, token]);
                       },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.delete),
-                      title: Text('Item 2'),
-                      onTap: null,
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.label),
-                      title: Text('Item 3'),
-                      onTap: null,
                     ),
                     Divider(
                       height: 1,

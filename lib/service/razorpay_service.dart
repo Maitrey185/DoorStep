@@ -23,7 +23,6 @@ class RazorpayService {
     logger.i("Payment Successful");
     //cartController.clear();
     cartBox.clear();
-
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {

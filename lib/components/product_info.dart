@@ -13,6 +13,7 @@ class ProductInfo extends StatefulWidget {
     Key key,
     @required this.product,
   }) : super(key: key);
+
   final DetailedProduct product;
 
   @override
@@ -20,11 +21,23 @@ class ProductInfo extends StatefulWidget {
 }
 
 class _ProductInfoState extends State<ProductInfo> {
-  // bool isProductInCrt = false;
+  bool isProductInCrt = false;
+  int index = -1;
+
+  final cartBox = Hive.box('cartBox');
+
   @override
   void initState() {
     // code for checking if the product is there
     // in the box and if it's quantity is atleast 1
+    for (int i = 0; i < cartBox.length; i++) {
+      final cartItem = cartBox.getAt(i) as CartItem;
+      if (widget.product.id == cartItem.product.id && cartItem.itemCount > 0) {
+        isProductInCrt = true;
+        index = i;
+        break;
+      }
+    }
     super.initState();
   }
 
@@ -142,28 +155,51 @@ class _ProductInfoState extends State<ProductInfo> {
                       color: Colors.orangeAccent,
                     ),
                   ),
-                  child: FlatButton(
-                    child: Icon(Icons.add_shopping_cart),
+                  child: TextButton(
+                    child: Icon(Icons.add_shopping_cart, color: Colors.black),
                     onPressed: () {
-                      final cartItem = CartItem(
-                          product: widget.product, itemCount: numOfItems);
-                      addToCart(cartItem);
-                      return showDialog(
-                        context: context,
-                        builder: (ctx) => AlertDialog(
-                          title: Text("Added to Cart"),
-                          content: Text(
-                              "The product is successfully added to yor cart."),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(ctx).pop();
-                              },
-                              child: Text("Continue"),
-                            ),
-                          ],
-                        ),
-                      );
+                      if (!isProductInCrt) {
+                        final cartItem = CartItem(
+                            product: widget.product, itemCount: numOfItems);
+                        addToCart(cartItem);
+                        return showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: Text("Added to Cart"),
+                            content: Text(
+                                "The product is successfully added to yor cart."),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                },
+                                child: Text("Continue"),
+                              ),
+                            ],
+                          ),
+                        );
+                      } else {
+                        final cartItem = cartBox.getAt(index) as CartItem;
+                        setState(() {
+                          cartItem.itemCount = cartItem.itemCount + numOfItems;
+                        });
+                        return showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: Text("Added to Cart"),
+                            content: Text(
+                                "The product was already in the cart. Changed it's quantity!"),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                },
+                                child: Text("Continue"),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
                     },
                   ),
                 ),
@@ -175,9 +211,18 @@ class _ProductInfoState extends State<ProductInfo> {
                           borderRadius: BorderRadius.circular(18)),
                       color: Colors.orangeAccent,
                       onPressed: () {
-                        final cartItem = CartItem(
-                            product: widget.product, itemCount: numOfItems);
-                        addToCart(cartItem);
+                        if (!isProductInCrt) {
+                          final cartItem = CartItem(
+                              product: widget.product, itemCount: numOfItems);
+                          addToCart(cartItem);
+                          print("A");
+                        } else {
+                          final cartItem = cartBox.getAt(index) as CartItem;
+                          setState(() {
+                            cartItem.itemCount =
+                                cartItem.itemCount + numOfItems;
+                          });
+                        }
                         Get.to(CartScreen());
                       },
                       child: Text(
