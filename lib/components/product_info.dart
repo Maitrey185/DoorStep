@@ -20,8 +20,11 @@ class ProductInfo extends StatefulWidget {
 }
 
 class _ProductInfoState extends State<ProductInfo> {
+  // bool isProductInCrt = false;
   @override
   void initState() {
+    // code for checking if the product is there
+    // in the box and if it's quantity is atleast 1
     super.initState();
   }
 
