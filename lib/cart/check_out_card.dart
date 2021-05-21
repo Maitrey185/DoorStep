@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'default_button.dart';
 import 'size_config.dart';
+import '../service/razorpay_service.dart';
 
 class CheckoutCard extends StatelessWidget {
   CheckoutCard({this.total});
@@ -8,6 +9,8 @@ class CheckoutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RazorpayService _razorpayService = new RazorpayService();
+
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: getProportionateScreenWidth(15),
@@ -51,7 +54,9 @@ class CheckoutCard extends StatelessWidget {
                   width: getProportionateScreenWidth(190),
                   child: DefaultButton(
                     text: "Check Out",
-                    press: () {},
+                    press: () {
+                      _razorpayService.pay(total.floorToDouble() * 100);
+                    },
                   ),
                 ),
               ],

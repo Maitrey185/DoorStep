@@ -7,7 +7,7 @@ class CartItem {
   @HiveField(0)
   final DetailedProduct product;
   @HiveField(1)
-  final int itemCount;
+  var itemCount;
 
   CartItem({this.product, this.itemCount});
 }

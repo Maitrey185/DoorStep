@@ -1,11 +1,13 @@
 import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-//import '../controller/cart_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
+
+import '../main_shopping_page.dart';
 
 class RazorpayService {
   Logger logger = Logger();
-  //CartController cartController = Get.find();
   var cartBox = Hive.box('cartBox');
 
   pay(double amount) {
@@ -19,10 +21,14 @@ class RazorpayService {
     _razorpay.open(options);
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+  Future<void> _handlePaymentSuccess(PaymentSuccessResponse response) async {
     logger.i("Payment Successful");
     //cartController.clear();
     cartBox.clear();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var id = prefs.getString("id");
+    var token = prefs.getString("token");
+    Get.to(MainShop(id, token));
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
