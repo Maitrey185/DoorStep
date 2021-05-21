@@ -58,7 +58,7 @@ class _SignUpState extends State<SignUp> {
                   Text(
                     "SignUp",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.acme(
+                    style: GoogleFonts.raleway(
                       textStyle: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 50.0),
                     ),
@@ -180,7 +180,7 @@ class _SignUpState extends State<SignUp> {
                   //   height: 10.0,
                   // ),
                   RoundButton(
-                    colour: Colors.orangeAccent,
+                    colour: Color(0xFFFF7675),
                     title: 'Sign Up',
                     onPressed: () {
                       postData(FlutterConfig.get('SERVER_URL') + 'user/signup');

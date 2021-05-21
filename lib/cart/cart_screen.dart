@@ -32,6 +32,7 @@ class _CartScreenState extends State<CartScreen> {
       total = total + cartItem.product.price * cartItem.itemCount;
     }
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: buildAppBar(context),
       body: Padding(
         padding:
@@ -65,7 +66,7 @@ class _CartScreenState extends State<CartScreen> {
                           background: Container(
                             padding: EdgeInsets.symmetric(horizontal: 20),
                             decoration: BoxDecoration(
-                              color: Color(0xFFFFE6E6),
+                              color: Color(0xFFFFBBA3),
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Row(
@@ -86,7 +87,7 @@ class _CartScreenState extends State<CartScreen> {
           ? CheckoutCard(total: total)
           : Padding(
               padding:
-                  const EdgeInsets.only(bottom: 300.0, left: 80.0, right: 80.0),
+                  const EdgeInsets.only(bottom: 150.0, left: 80.0, right: 80.0),
               child: TextButton(
                 onPressed: () async {
                   SharedPreferences prefs =
@@ -96,7 +97,7 @@ class _CartScreenState extends State<CartScreen> {
                   Get.to(MainShop(id, token));
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: Colors.orangeAccent,
+                  backgroundColor: Colors.white,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -114,7 +115,7 @@ class _CartScreenState extends State<CartScreen> {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.orangeAccent,
+      backgroundColor: Color(0xFFFF7675),
       leading: TextButton(
         child: Icon(
           Icons.chevron_left,

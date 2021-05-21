@@ -128,9 +128,9 @@ class _ProductInfoState extends State<ProductInfo> {
                 // width: 32,
                 child: RatingBar.readOnly(
                   initialRating: widget.product.rating.toDouble(),
-                  filledColor: Colors.orangeAccent,
-                  halfFilledColor: Colors.orangeAccent,
-                  emptyColor: Colors.orangeAccent,
+                  filledColor: Color(0xFFFF7675),
+                  halfFilledColor: Color(0xFFFF7675),
+                  emptyColor: Color(0xFFFF7675),
                   isHalfAllowed: true,
                   halfFilledIcon: Icons.star_half,
                   filledIcon: Icons.star,
@@ -152,7 +152,7 @@ class _ProductInfoState extends State<ProductInfo> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
                     border: Border.all(
-                      color: Colors.orangeAccent,
+                      color: Color(0xFFFF7675),
                     ),
                   ),
                   child: TextButton(
@@ -188,7 +188,7 @@ class _ProductInfoState extends State<ProductInfo> {
                           builder: (ctx) => AlertDialog(
                             title: Text("Added to Cart"),
                             content: Text(
-                                "The product was already in the cart. Changed it's quantity!"),
+                                "The product was already in the cart. Changed its quantity!"),
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {
@@ -209,7 +209,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     child: FlatButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18)),
-                      color: Colors.orangeAccent,
+                      color: Color(0xFFFF7675),
                       onPressed: () {
                         if (!isProductInCrt) {
                           final cartItem = CartItem(
