@@ -28,6 +28,11 @@ class _SignUpState extends State<SignUp> {
   String passwordError = "";
   final ImagePicker _picker = ImagePicker();
 
+  final TextEditingController nameFieldController = TextEditingController();
+  final TextEditingController emailFieldController = TextEditingController();
+  final TextEditingController numberFieldController = TextEditingController();
+  final TextEditingController passwordFieldController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,16 +60,10 @@ class _SignUpState extends State<SignUp> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.acme(
                       textStyle: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 70.0),
+                          fontWeight: FontWeight.bold, fontSize: 50.0),
                     ),
                   ),
-                  Hero(
-                    tag: 'logo',
-                    child: Container(
-                      height: 50.0,
-                      child: Image.asset('images/a.PNG'),
-                    ),
-                  ),
+
                   SizedBox(
                     height: 20.0,
                   ),
@@ -72,14 +71,24 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: 20,
                   ),
-                  MyTextField(
-                    hint: 'Enter your name',
-                    isPassword: false,
-                    textAction: TextInputAction.next,
-                    handleChange: (value) {
-                      name = value;
-                    },
+                  TextFormField(
+                    controller: nameFieldController,
+                    decoration: InputDecoration(
+                      labelStyle: TextStyle(
+                          color: Colors.black
+                      ),
+                      hintText: "Enter your name",
+                      labelText: "Name",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)),
+                          borderSide: BorderSide(width: 1,color: Colors.black)),//suffixIcon:
+                      border: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)),
+                          borderSide: BorderSide(width: 1,color: Colors.black)),
+                    ),
                   ),
+
                   SizedBox(
                     height: 5,
                   ),
@@ -91,14 +100,23 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  MyTextField(
-                    hint: 'Enter your email',
-                    isPassword: false,
-                    keyBoardType: TextInputType.emailAddress,
-                    textAction: TextInputAction.next,
-                    handleChange: (value) {
-                      email = value;
-                    },
+                  TextFormField(
+                    controller: emailFieldController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      labelStyle: TextStyle(
+                          color: Colors.black
+                      ),
+                      hintText: "Enter your email",
+                      labelText: "Email",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)),
+                          borderSide: BorderSide(width: 1,color: Colors.black)),//suffixIcon:
+                      border: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)),
+                          borderSide: BorderSide(width: 1,color: Colors.black)),
+                    ),
                   ),
                   SizedBox(
                     height: 5,
@@ -111,24 +129,44 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  MyTextField(
-                    hint: 'Enter your contact number',
-                    isPassword: false,
-                    keyBoardType: TextInputType.phone,
-                    textAction: TextInputAction.next,
-                    handleChange: (value) {
-                      number = value;
-                    },
+                  TextFormField(
+                    controller: numberFieldController,
+
+                    decoration: InputDecoration(
+                      labelStyle: TextStyle(
+                          color: Colors.black
+                      ),
+                      hintText: "Enter your phone number",
+                      labelText: "Phone number",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)),
+                          borderSide: BorderSide(width: 1,color: Colors.black)),//suffixIcon:
+                      border: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)),
+                          borderSide: BorderSide(width: 1,color: Colors.black)),
+                    ),
                   ),
                   SizedBox(
                     height: 38.0,
                   ),
-                  MyTextField(
-                    hint: 'Enter your password',
-                    isPassword: true,
-                    handleChange: (value) {
-                      password = value;
-                    },
+                  TextFormField(
+                    controller: passwordFieldController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelStyle: TextStyle(
+                          color: Colors.black
+                      ),
+                      hintText: "Enter your password",
+                      labelText: "Password",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)),
+                          borderSide: BorderSide(width: 1,color: Colors.black)),//suffixIcon:
+                      border: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)),
+                          borderSide: BorderSide(width: 1,color: Colors.black)),
+                    ),
                   ),
                   SizedBox(
                     height: 5,
@@ -138,9 +176,9 @@ class _SignUpState extends State<SignUp> {
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.red),
                   ),
-                  SizedBox(
-                    height: 18.0,
-                  ),
+                  // SizedBox(
+                  //   height: 10.0,
+                  // ),
                   RoundButton(
                     colour: Colors.orangeAccent,
                     title: 'Sign Up',
@@ -168,7 +206,7 @@ class _SignUpState extends State<SignUp> {
       child: Stack(
         children: <Widget>[
           CircleAvatar(
-            radius: 70.0,
+            radius: 55.0,
             backgroundImage: _imageFile == null
                 ? AssetImage('images/default_profile_pic.jpg')
                 : FileImage(File(_imageFile.path)),
@@ -254,32 +292,32 @@ class _SignUpState extends State<SignUp> {
     var url = Uri.parse(uri);
     var request = new http.MultipartRequest("POST", url);
 
-    if (name == "") {
+    if (nameFieldController.text.trim() == "") {
       setState(() {
         nameError = "Enter username!";
       });
     } else {
-      request.fields['name'] = name;
+      request.fields['name'] = nameFieldController.text.trim();
     }
 
-    if (email == "") {
+    if (emailFieldController.text.trim() == "") {
       setState(() {
         emailError = "Enter email address!";
       });
     } else {
-      request.fields['email'] = email;
+      request.fields['email'] = emailFieldController.text.trim();
     }
 
-    if (password == "") {
+    if (passwordFieldController.text.trim() == "") {
       setState(() {
         passwordError = "Enter password!";
       });
     } else {
-      request.fields['password'] = password;
+      request.fields['password'] = passwordFieldController.text.trim();
     }
 
-    if (number != "") {
-      request.fields['contactNo'] = number;
+    if (numberFieldController.text.trim() != "") {
+      request.fields['contactNo'] = numberFieldController.text.trim();
     }
 
     if (_imageFile != null) {
@@ -303,7 +341,7 @@ class _SignUpState extends State<SignUp> {
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
-          body: jsonEncode({'email': email, 'password': password}),
+          body: jsonEncode({'email': emailFieldController.text.trim(), 'password': passwordFieldController.text.trim()}),
         );
         if (res.statusCode == 404) {
           setState(() {
@@ -317,7 +355,7 @@ class _SignUpState extends State<SignUp> {
           String s3 = data['user']['profilePicture'].toString().split('\\')[2];
           String imgUrl = '$s1/$s2/$s3';
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString("email", email);
+          prefs.setString("email", emailFieldController.text.trim());
           prefs.setString("id", data["user"]["_id"]);
           prefs.setString("token", data['token']);
           Navigator.pushAndRemoveUntil(

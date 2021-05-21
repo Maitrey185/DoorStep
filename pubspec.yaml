@@ -13,10 +13,10 @@ dependencies:
   hive_flutter: ^0.3.1
   path_provider: ^1.6.15
   logger: ^0.9.4
-  razorpay_flutter: ^1.2.3
+  razorpay_flutter: ^1.2.6
   cupertino_icons: ^1.0.0
   carousel_pro: ^1.0.0
-  flutter_svg: ^0.17.4
+  flutter_svg: ^0.22.0
   uuid: ^2.2.2
   get: ^3.26.0
   http: ^0.12.2

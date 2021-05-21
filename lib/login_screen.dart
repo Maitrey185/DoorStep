@@ -22,7 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
   String password;
 
   String errorMsg = "";
-
+  final TextEditingController passwordFieldController = TextEditingController();
+  final TextEditingController emailFieldController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: ListView(
           children: [
             SizedBox(
-              height: 50.0,
+              height: 90.0,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -48,43 +49,66 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     "Login",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.acme(
+                    style: GoogleFonts.raleway(
                       textStyle: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 80.0),
+                          fontWeight: FontWeight.bold, fontSize: 65.0),
                     ),
                   ),
                   SizedBox(
                     height: 20.0,
                   ),
-                  Hero(
-                    tag: 'logo',
-                    child: Container(
-                      height: 100.0,
-                      child: Image.asset('images/a.PNG'),
+                  Text(
+                    "Sign in with your email and password",
+                    textAlign: TextAlign.center,
+
+                    style: TextStyle(fontSize: 15.0),
+
+                  ),
+                  SizedBox(
+                    height: 60.0,
+                  ),
+                  TextFormField(
+                    controller: emailFieldController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      labelStyle: TextStyle(
+                        color: Colors.black
+                      ),
+                      hintText: "Enter your email",
+                      labelText: "Email",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      //suffixIcon:
+                      focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)),
+                          borderSide: BorderSide(width: 1,color: Colors.black)),
+                      border: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                          const Radius.circular(10.0)),
+                          borderSide: BorderSide(width: 1,color: Colors.black)),
                     ),
                   ),
                   SizedBox(
-                    height: 50.0,
+                    height: 30.0,
                   ),
-                  MyTextField(
-                    hint: 'Enter your email',
-                    isPassword: false,
-                    keyBoardType: TextInputType.emailAddress,
-                    textAction: TextInputAction.next,
-                    handleChange: (value) {
-                      email = value;
-                    },
+              TextFormField(
+                controller: passwordFieldController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(
+                      color: Colors.black
                   ),
-                  SizedBox(
-                    height: 25.0,
+                  hintText: "Enter your password",
+                  labelText: "Password",
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                      const Radius.circular(10.0)),
+                      borderSide: BorderSide(width: 1,color: Colors.black)),
+                  border: OutlineInputBorder(borderRadius: const BorderRadius.all(
+                    const Radius.circular(10.0)),
+                      borderSide: BorderSide(width: 1,color: Colors.black)),
+                  //suffixIcon: "assets/icons/Lock.svg",
                   ),
-                  MyTextField(
-                    hint: 'Enter your password',
-                    isPassword: true,
-                    handleChange: (value) {
-                      password = value;
-                    },
-                  ),
+                ),
+
                   SizedBox(
                     height: 12.0,
                   ),
@@ -97,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 12.0,
                   ),
                   RoundButton(
-                      colour: Colors.orangeAccent,
+                      colour: Color(0xFFFF7675),
                       title: 'LogIn',
                       onPressed: () async {
                         print(FlutterConfig.get('SERVER_URL'));
@@ -107,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             'Content-Type': 'application/json; charset=UTF-8',
                           },
                           body: jsonEncode(
-                              {'email': email, 'password': password}),
+                              {'email': emailFieldController.text.trim(), 'password':  passwordFieldController.text.trim(),}),
                         );
                         if (res.statusCode == 404) {
                           setState(() {
@@ -128,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           String imgUrl = '$s1/$s2/$s3';
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          prefs.setString("email", email);
+                          prefs.setString("email", emailFieldController.text.trim());
                           prefs.setString("id", data["user"]["_id"]);
                           prefs.setString("token", data['token']);
                           Navigator.pushAndRemoveUntil(
