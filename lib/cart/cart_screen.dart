@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 import '../main_shopping_page.dart';
@@ -32,85 +31,81 @@ class _CartScreenState extends State<CartScreen> {
       total = total + cartItem.product.price * cartItem.itemCount;
     }
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: buildAppBar(context),
-      body: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-        child: cartLength == 0
-            ? Container(
-                child: Center(
-                  child: Image.network(
-                      "https://sethisbakery.com/assets/website/images/empty-cart.png"),
-                ),
-              )
-            : ValueListenableBuilder(
-                valueListenable: Hive.box('cartBox').listenable(),
-                builder: (context, cartBox, widget) {
-                  return ListView.builder(
-                    itemCount: cartBox.length,
-                    itemBuilder: (context, index) {
-                      final cartItem = cartBox.getAt(index) as CartItem;
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: Dismissible(
-                          key: Key(uuid.v1().toString()),
-                          direction: DismissDirection.endToStart,
-                          onDismissed: (direction) {
-                            final cartItem = cartBox.getAt(index) as CartItem;
-                            setState(() {
-                              total = total - cartItem.product.price;
-                              cartBox.deleteAt(index);
-                            });
-                          },
-                          background: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFFFBBA3),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Row(
-                              children: [
-                                Spacer(),
-                                SvgPicture.asset("assets/icons/Trash.svg"),
-                              ],
-                            ),
-                          ),
-                          child: CartCard(cart: cartItem),
+        backgroundColor: Colors.white,
+        appBar: buildAppBar(context),
+        body: Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          child: cartLength == 0
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Image.asset("images/empty-cart.png"),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        var id = prefs.getString("id");
+                        var token = prefs.getString("token");
+                        Get.to(MainShop(id, token));
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: Color(0xFFFF7675),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Your Cart is Empty! Continue Shopping",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
-                      );
-                    },
-                  );
-                }),
-      ),
-      bottomNavigationBar: cartLength != 0
-          ? CheckoutCard(total: total)
-          : Padding(
-              padding:
-                  const EdgeInsets.only(bottom: 150.0, left: 80.0, right: 80.0),
-              child: TextButton(
-                onPressed: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  var id = prefs.getString("id");
-                  var token = prefs.getString("token");
-                  Get.to(MainShop(id, token));
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.white,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Your Cart is Empty! Continue Shopping",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ),
-    );
+                      ),
+                    ),
+                  ],
+                )
+              : ValueListenableBuilder(
+                  valueListenable: Hive.box('cartBox').listenable(),
+                  builder: (context, cartBox, widget) {
+                    return ListView.builder(
+                      itemCount: cartBox.length,
+                      itemBuilder: (context, index) {
+                        final cartItem = cartBox.getAt(index) as CartItem;
+                        return Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: getProportionateScreenHeight(10)),
+                          child: Dismissible(
+                            key: Key(uuid.v1().toString()),
+                            direction: DismissDirection.endToStart,
+                            onDismissed: (direction) {
+                              final cartItem = cartBox.getAt(index) as CartItem;
+                              setState(() {
+                                total = total - cartItem.product.price;
+                                cartBox.deleteAt(index);
+                              });
+                            },
+                            background: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: getProportionateScreenHeight(20)),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFFBBA3),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Row(
+                                children: [Spacer(), Icon(Icons.delete)],
+                              ),
+                            ),
+                            child: CartCard(cart: cartItem),
+                          ),
+                        );
+                      },
+                    );
+                  }),
+        ),
+        bottomNavigationBar:
+            cartLength != 0 ? CheckoutCard(total: total) : null);
   }
 
   AppBar buildAppBar(BuildContext context) {

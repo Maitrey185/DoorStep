@@ -60,55 +60,57 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     "Sign in with your email and password",
                     textAlign: TextAlign.center,
-
                     style: TextStyle(fontSize: 15.0),
-
                   ),
                   SizedBox(
                     height: 60.0,
                   ),
                   TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: emailFieldController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      labelStyle: TextStyle(
-                        color: Colors.black
-                      ),
+                      labelStyle: TextStyle(color: Colors.black),
                       hintText: "Enter your email",
                       labelText: "Email",
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       //suffixIcon:
-                      focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                          const Radius.circular(10.0)),
-                          borderSide: BorderSide(width: 1,color: Colors.black)),
-                      border: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                          const Radius.circular(10.0)),
-                          borderSide: BorderSide(width: 1,color: Colors.black)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
                     ),
                   ),
                   SizedBox(
                     height: 30.0,
                   ),
-              TextFormField(
-                controller: passwordFieldController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelStyle: TextStyle(
-                      color: Colors.black
+                  TextFormField(
+                    controller: passwordFieldController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelStyle: TextStyle(color: Colors.black),
+                      hintText: "Enter your password",
+                      labelText: "Password",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
+                      //suffixIcon: "assets/icons/Lock.svg",
+                    ),
                   ),
-                  hintText: "Enter your password",
-                  labelText: "Password",
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                      const Radius.circular(10.0)),
-                      borderSide: BorderSide(width: 1,color: Colors.black)),
-                  border: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                    const Radius.circular(10.0)),
-                      borderSide: BorderSide(width: 1,color: Colors.black)),
-                  //suffixIcon: "assets/icons/Lock.svg",
-                  ),
-                ),
-
                   SizedBox(
                     height: 12.0,
                   ),
@@ -130,8 +132,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           headers: <String, String>{
                             'Content-Type': 'application/json; charset=UTF-8',
                           },
-                          body: jsonEncode(
-                              {'email': emailFieldController.text.trim(), 'password':  passwordFieldController.text.trim(),}),
+                          body: jsonEncode({
+                            'email': emailFieldController.text.trim(),
+                            'password': passwordFieldController.text.trim(),
+                          }),
                         );
                         if (res.statusCode == 404) {
                           setState(() {
@@ -152,7 +156,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           String imgUrl = '$s1/$s2/$s3';
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          prefs.setString("email", emailFieldController.text.trim());
+                          prefs.setString(
+                              "email", emailFieldController.text.trim());
                           prefs.setString("id", data["user"]["_id"]);
                           prefs.setString("token", data['token']);
                           Navigator.pushAndRemoveUntil(

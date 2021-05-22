@@ -72,20 +72,25 @@ class _SignUpState extends State<SignUp> {
                     height: 20,
                   ),
                   TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: nameFieldController,
                     decoration: InputDecoration(
                       labelStyle: TextStyle(
-                          color: Colors.black
+                        color: Colors.black,
                       ),
                       hintText: "Enter your name",
                       labelText: "Name",
                       floatingLabelBehavior: FloatingLabelBehavior.always,
-                      focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                          const Radius.circular(10.0)),
-                          borderSide: BorderSide(width: 1,color: Colors.black)),//suffixIcon:
-                      border: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                          const Radius.circular(10.0)),
-                          borderSide: BorderSide(width: 1,color: Colors.black)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide: BorderSide(
+                              width: 1, color: Colors.black)), //suffixIcon:
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
                     ),
                   ),
 
@@ -101,21 +106,24 @@ class _SignUpState extends State<SignUp> {
                     height: 20.0,
                   ),
                   TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: emailFieldController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      labelStyle: TextStyle(
-                          color: Colors.black
-                      ),
+                      labelStyle: TextStyle(color: Colors.black),
                       hintText: "Enter your email",
                       labelText: "Email",
                       floatingLabelBehavior: FloatingLabelBehavior.always,
-                      focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                          const Radius.circular(10.0)),
-                          borderSide: BorderSide(width: 1,color: Colors.black)),//suffixIcon:
-                      border: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                          const Radius.circular(10.0)),
-                          borderSide: BorderSide(width: 1,color: Colors.black)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide: BorderSide(
+                              width: 1, color: Colors.black)), //suffixIcon:
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
                     ),
                   ),
                   SizedBox(
@@ -130,21 +138,24 @@ class _SignUpState extends State<SignUp> {
                     height: 20.0,
                   ),
                   TextFormField(
+                    keyboardType: TextInputType.phone,
+                    textInputAction: TextInputAction.next,
                     controller: numberFieldController,
-
                     decoration: InputDecoration(
-                      labelStyle: TextStyle(
-                          color: Colors.black
-                      ),
+                      labelStyle: TextStyle(color: Colors.black),
                       hintText: "Enter your phone number",
                       labelText: "Phone number",
                       floatingLabelBehavior: FloatingLabelBehavior.always,
-                      focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                          const Radius.circular(10.0)),
-                          borderSide: BorderSide(width: 1,color: Colors.black)),//suffixIcon:
-                      border: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                          const Radius.circular(10.0)),
-                          borderSide: BorderSide(width: 1,color: Colors.black)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide: BorderSide(
+                              width: 1, color: Colors.black)), //suffixIcon:
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
                     ),
                   ),
                   SizedBox(
@@ -154,18 +165,20 @@ class _SignUpState extends State<SignUp> {
                     controller: passwordFieldController,
                     obscureText: true,
                     decoration: InputDecoration(
-                      labelStyle: TextStyle(
-                          color: Colors.black
-                      ),
+                      labelStyle: TextStyle(color: Colors.black),
                       hintText: "Enter your password",
                       labelText: "Password",
                       floatingLabelBehavior: FloatingLabelBehavior.always,
-                      focusedBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                          const Radius.circular(10.0)),
-                          borderSide: BorderSide(width: 1,color: Colors.black)),//suffixIcon:
-                      border: OutlineInputBorder(borderRadius: const BorderRadius.all(
-                          const Radius.circular(10.0)),
-                          borderSide: BorderSide(width: 1,color: Colors.black)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide: BorderSide(
+                              width: 1, color: Colors.black)), //suffixIcon:
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(10.0)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
                     ),
                   ),
                   SizedBox(
@@ -341,7 +354,10 @@ class _SignUpState extends State<SignUp> {
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
-          body: jsonEncode({'email': emailFieldController.text.trim(), 'password': passwordFieldController.text.trim()}),
+          body: jsonEncode({
+            'email': emailFieldController.text.trim(),
+            'password': passwordFieldController.text.trim()
+          }),
         );
         if (res.statusCode == 404) {
           setState(() {

@@ -28,8 +28,6 @@ class _ProductInfoState extends State<ProductInfo> {
 
   @override
   void initState() {
-    // code for checking if the product is there
-    // in the box and if it's quantity is atleast 1
     for (int i = 0; i < cartBox.length; i++) {
       final cartItem = cartBox.getAt(i) as CartItem;
       if (widget.product.id == cartItem.product.id && cartItem.itemCount > 0) {
@@ -44,108 +42,105 @@ class _ProductInfoState extends State<ProductInfo> {
   int numOfItems = 1;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text("Color"),
+                Row(
                   children: <Widget>[
-                    Text("Color"),
-                    Row(
-                      children: <Widget>[
-                        ColorDot(
-                          color: Color(0xFF356C95),
-                          isSelected: true,
-                        ),
-                      ],
+                    ColorDot(
+                      color: Color(0xFF356C95),
+                      isSelected: true,
                     ),
                   ],
                 ),
-              ),
-              Expanded(
-                child: RichText(
-                  text: TextSpan(
-                    style: TextStyle(color: kTextColor),
-                    children: [
-                      TextSpan(text: "Dimensions\n"),
-                      TextSpan(
-                        text: "${widget.product.dimensions}",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline5
-                            .copyWith(fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: kDefaultPaddin / 2),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
-            child: Text(
-              widget.product.description,
-              style: TextStyle(height: 1.5),
+              ],
             ),
+            RichText(
+              text: TextSpan(
+                style: TextStyle(color: kTextColor),
+                children: [
+                  TextSpan(text: "Dimensions\n"),
+                  TextSpan(
+                    text: "${widget.product.dimensions}",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        .copyWith(fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: kDefaultPaddin / 2),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
+          child: Text(
+            widget.product.description,
+            style: TextStyle(height: 1.5),
           ),
-          SizedBox(height: kDefaultPaddin / 2),
-          Row(
-            children: <Widget>[
-              buildOutlineButton(
-                icon: Icons.remove,
+        ),
+        SizedBox(height: kDefaultPaddin / 2),
+        Row(
+          children: <Widget>[
+            buildOutlineButton(
+              icon: Icons.remove,
+              press: () {
+                if (numOfItems > 1) {
+                  setState(() {
+                    numOfItems--;
+                  });
+                }
+              },
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: kDefaultPaddin / 2),
+              child: Text(
+                // if our item is less  then 10 then  it shows 01 02 like that
+                numOfItems.toString().padLeft(2, "0"),
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            buildOutlineButton(
+                icon: Icons.add,
                 press: () {
-                  if (numOfItems > 1) {
-                    setState(() {
-                      numOfItems--;
-                    });
-                  }
-                },
+                  setState(() {
+                    numOfItems++;
+                  });
+                }),
+            Container(
+              padding: EdgeInsets.all(8),
+              // height: 32,
+              // width: 32,
+              child: RatingBar.readOnly(
+                initialRating: widget.product.rating.toDouble(),
+                filledColor: Color(0xFFFF7675),
+                halfFilledColor: Color(0xFFFF7675),
+                emptyColor: Color(0xFFFF7675),
+                isHalfAllowed: true,
+                halfFilledIcon: Icons.star_half,
+                filledIcon: Icons.star,
+                emptyIcon: Icons.star_border,
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: kDefaultPaddin / 2),
-                child: Text(
-                  // if our item is less  then 10 then  it shows 01 02 like that
-                  numOfItems.toString().padLeft(2, "0"),
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-              ),
-              buildOutlineButton(
-                  icon: Icons.add,
-                  press: () {
-                    setState(() {
-                      numOfItems++;
-                    });
-                  }),
-              Container(
-                padding: EdgeInsets.all(8),
-                // height: 32,
-                // width: 32,
-                child: RatingBar.readOnly(
-                  initialRating: widget.product.rating.toDouble(),
-                  filledColor: Color(0xFFFF7675),
-                  halfFilledColor: Color(0xFFFF7675),
-                  emptyColor: Color(0xFFFF7675),
-                  isHalfAllowed: true,
-                  halfFilledIcon: Icons.star_half,
-                  filledIcon: Icons.star,
-                  emptyIcon: Icons.star_border,
-                ),
-                //child: SvgPicture.asset("assets/icons/heart.svg"),
-              ),
-            ],
-          ),
-          SizedBox(height: kDefaultPaddin / 2),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
-            child: Row(
-              children: <Widget>[
-                Container(
+              //child: SvgPicture.asset("assets/icons/heart.svg"),
+            ),
+          ],
+        ),
+        SizedBox(height: kDefaultPaddin / 2),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Container(
                   margin: EdgeInsets.only(right: kDefaultPaddin),
                   height: 50,
                   width: 58,
@@ -203,44 +198,44 @@ class _ProductInfoState extends State<ProductInfo> {
                     },
                   ),
                 ),
-                Expanded(
-                  child: SizedBox(
-                    height: 50,
-                    child: FlatButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18)),
-                      color: Color(0xFFFF7675),
-                      onPressed: () {
-                        if (!isProductInCrt) {
-                          final cartItem = CartItem(
-                              product: widget.product, itemCount: numOfItems);
-                          addToCart(cartItem);
-                          print("A");
-                        } else {
-                          final cartItem = cartBox.getAt(index) as CartItem;
-                          setState(() {
-                            cartItem.itemCount =
-                                cartItem.itemCount + numOfItems;
-                          });
-                        }
-                        Get.to(CartScreen());
-                      },
-                      child: Text(
-                        "Buy  Now".toUpperCase(),
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+              ),
+              Expanded(
+                flex: 3,
+                child: SizedBox(
+                  height: 50,
+                  child: FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18)),
+                    color: Color(0xFFFF7675),
+                    onPressed: () {
+                      if (!isProductInCrt) {
+                        final cartItem = CartItem(
+                            product: widget.product, itemCount: numOfItems);
+                        addToCart(cartItem);
+                        print("A");
+                      } else {
+                        final cartItem = cartBox.getAt(index) as CartItem;
+                        setState(() {
+                          cartItem.itemCount = cartItem.itemCount + numOfItems;
+                        });
+                      }
+                      Get.to(CartScreen());
+                    },
+                    child: Text(
+                      "Buy  Now".toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
