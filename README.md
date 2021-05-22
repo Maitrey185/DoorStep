@@ -38,8 +38,6 @@ To store the data we have used MongoDB Atlas which offers NoSQL Database.
 * Payment Transaction : It allows user to pay for the order using Credit/Debit card, Netbanking, UPI, Wallets. We have developed this payment gateway using RazorPay.  
 
 
-Don't forget to replace the link here with **https://github.com/Maitrey185/ShapeCam** link.
-
 * GitHub repo link: [Link to repository](https://github.com/Maitrey185/ShapeCam)
 * Drive link: [Drive link here](https://drive.google.com/drive/folders/128cIZRmQI_e11ejbck_GugDndTJehNyD?usp=sharing)
 
@@ -83,11 +81,8 @@ We can use Augumented Reality to provide a virtual try on of the glasses to the 
 
 ## Screenshots
 
-
 <img align="left" src="https://drive.google.com/uc?export=view&id=126v2ij-JCYIEGv057-0LvaEpBNkqeJZj" height = 400/> 
 
 <img align="left" src="https://drive.google.com/uc?export=view&id=1ZrUR3V7reQUN9sTbovpUYOzIwzIFtWV7" height = 400/> 
 
 <img align="left" src="https://drive.google.com/uc?export=view&id=1u5cb9cjIVjiF-m8CW4oNOlC-vgoJheKB" height = 400/> 
-
-<img align="left" src="https://drive.google.com/uc?export=view&id=1mJ_gw5WU1GXeatiKWMJF8wjmExkJac20" height = 400/> 
