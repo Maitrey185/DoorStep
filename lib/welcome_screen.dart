@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shape_cam/cart/size_config.dart';
 import 'package:shape_cam/round_button.dart';
 import 'package:shape_cam/signup_screen.dart';
 import 'login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-            color: Color(0xFFF2EAEB)
+              color: Color(0xFFF2EAEB)
             // image: DecorationImage(
             //   //image: NetworkImage("https://images.unsplash.com/photo-1558066858-246fbbf9446f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=282&q=80"),
             //   fit: BoxFit.cover,
@@ -21,31 +24,35 @@ class WelcomeScreen extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-           mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               new ClipPath(
                 clipper: MyClipper(),
                 child: Container(
                   decoration: BoxDecoration(
                     image: new DecorationImage(
-                      image: NetworkImage("https://images.unsplash.com/photo-1607457471980-84e5d89de2fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"),
+                      image: AssetImage("images/bg.jpg"),
+
                       fit: BoxFit.cover,
                     ),
                   ),
                   alignment: Alignment.center,
-                  padding: EdgeInsets.only(top: 150.0, bottom: 100.0),
+                  padding: EdgeInsets.only(top: getProportionateScreenHeight(150.0), bottom: getProportionateScreenHeight(100.0)),
                   child: Column(
                     children: <Widget>[
-                      Text(
-                        "ShapeCam",
-                        style: GoogleFonts.raleway(textStyle: TextStyle(
-                            fontSize: 60.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                        ),),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(1.0)),
+                        child: Text(
+                          "ShapeCam",
+                          style: GoogleFonts.raleway(textStyle: TextStyle(
+                              fontSize: getProportionateScreenHeight(60.0),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                          ),),
+                      ),
 
                       SizedBox(
-                        height: 40
+                          height: getProportionateScreenHeight(40.0)
                       )
                     ],
                   ),
@@ -54,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
 
 
               SizedBox(
-                height: 80.0,
+                height: getProportionateScreenHeight(80.0),
               ),
 
               Column(
@@ -62,7 +69,7 @@ class WelcomeScreen extends StatelessWidget {
                 children: [
 
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.0),
+                    padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24.0)),
                     child: RoundButton(
                         colour: Color(0xFFFF7675),
                         title: 'Sign Up',
@@ -71,7 +78,7 @@ class WelcomeScreen extends StatelessWidget {
                         }),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.0),
+                    padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24.0)),
                     child: RoundButton(
                         colour: Color(0xFFFFBBA3),
                         title: 'Login',

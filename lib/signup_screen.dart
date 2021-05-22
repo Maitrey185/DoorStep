@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shape_cam/cart/size_config.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -35,6 +36,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -47,10 +49,10 @@ class _SignUpState extends State<SignUp> {
         child: ListView(
           children: [
             SizedBox(
-              height: 10.0,
+              height: getProportionateScreenHeight(10.0),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24.0)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -60,16 +62,16 @@ class _SignUpState extends State<SignUp> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.raleway(
                       textStyle: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 50.0),
+                          fontWeight: FontWeight.bold, fontSize: getProportionateScreenHeight(50.0)),
                     ),
                   ),
 
                   SizedBox(
-                    height: 20.0,
+                    height: getProportionateScreenHeight(20.0),
                   ),
                   ImageProfile(),
                   SizedBox(
-                    height: 20,
+                    height: getProportionateScreenHeight(20.0),
                   ),
                   TextFormField(
                     textInputAction: TextInputAction.next,
@@ -95,7 +97,7 @@ class _SignUpState extends State<SignUp> {
                   ),
 
                   SizedBox(
-                    height: 5,
+                    height: getProportionateScreenHeight(5.0),
                   ),
                   Text(
                     nameError,
@@ -103,7 +105,7 @@ class _SignUpState extends State<SignUp> {
                     style: TextStyle(color: Colors.red),
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: getProportionateScreenHeight(20.0),
                   ),
                   TextFormField(
                     textInputAction: TextInputAction.next,
@@ -127,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: getProportionateScreenHeight(5.0),
                   ),
                   Text(
                     emailError,
@@ -135,7 +137,7 @@ class _SignUpState extends State<SignUp> {
                     style: TextStyle(color: Colors.red),
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: getProportionateScreenHeight(20.0),
                   ),
                   TextFormField(
                     keyboardType: TextInputType.phone,
@@ -159,7 +161,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   SizedBox(
-                    height: 38.0,
+                    height: getProportionateScreenHeight(38.0),
                   ),
                   TextFormField(
                     controller: passwordFieldController,
@@ -182,7 +184,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: getProportionateScreenHeight(5.0),
                   ),
                   Text(
                     passwordError,
@@ -237,7 +239,7 @@ class _SignUpState extends State<SignUp> {
               child: Icon(
                 Icons.camera_alt,
                 color: Colors.black38,
-                size: 32.0,
+                size: getProportionateScreenHeight(32.0),
               ),
             ),
           ),
@@ -248,7 +250,7 @@ class _SignUpState extends State<SignUp> {
 
   Widget bottomSheet() {
     return Container(
-      height: 100.0,
+      height: getProportionateScreenHeight(100.0),
       width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.symmetric(
         horizontal: 20,
@@ -259,11 +261,11 @@ class _SignUpState extends State<SignUp> {
           Text(
             "Choose Profile photo",
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: getProportionateScreenHeight(20.0),
             ),
           ),
           SizedBox(
-            height: 20,
+            height: getProportionateScreenHeight(20.0),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

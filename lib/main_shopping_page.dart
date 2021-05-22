@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:shape_cam/cart/size_config.dart';
 import 'product/all_products.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:shape_cam/user_data.dart';
@@ -17,6 +18,7 @@ class MainShop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return GetX<UserData>(
         init: UserData(id: id, token: token),
         builder: (controller) {
@@ -57,7 +59,7 @@ class MainShop extends StatelessWidget {
                                         '${controller.imgUrl}'),
                               ),
                             ),
-                            SizedBox(height: 20.0),
+                            SizedBox(height: getProportionateScreenHeight(20.0)),
                             Text(
                               'Hello, ${controller.name}!',
                               textAlign: TextAlign.center,
@@ -72,7 +74,7 @@ class MainShop extends StatelessWidget {
                         thickness: 1,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: EdgeInsets.symmetric(horizontal:getProportionateScreenWidth(16.0) ,vertical: getProportionateScreenHeight(16.0)),
                         child: Text(
                           'Check and Update your Profile',
                         ),
@@ -93,7 +95,7 @@ class MainShop extends StatelessWidget {
                         thickness: 1,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: EdgeInsets.symmetric(horizontal:getProportionateScreenWidth(16.0) ,vertical: getProportionateScreenHeight(16.0)),
                         child: Text(
                           'Logout',
                         ),
@@ -125,7 +127,7 @@ class MainShop extends StatelessWidget {
                   Container(
                     color: Colors.white,
                     // padding: EdgeInsets.all(5.0),
-                    height: 250.0,
+                    height: getProportionateScreenHeight(250.0),
                     child: Carousel(
                       boxFit: BoxFit.cover,
                       images: [

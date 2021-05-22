@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shape_cam/cart/size_config.dart';
 import 'package:shape_cam/product/detailed_product.dart';
 import 'package:shape_cam/constants.dart';
 import 'package:flutter_config/flutter_config.dart';
@@ -13,8 +14,9 @@ class ProductTitleWithImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(10.0)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -43,7 +45,7 @@ class ProductTitleWithImage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: kDefaultPaddin),
+              SizedBox(width: getProportionateScreenWidth(10.0)),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(

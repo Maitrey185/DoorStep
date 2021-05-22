@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shape_cam/cart/size_config.dart';
 import 'package:shape_cam/constants.dart';
 import 'package:shape_cam/product/detailed_product.dart';
 import 'product_title_with_image.dart';
@@ -10,6 +11,7 @@ class Body extends StatelessWidget {
   const Body({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     // It provide us total height and width
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
@@ -23,8 +25,8 @@ class Body extends StatelessWidget {
                   margin: EdgeInsets.only(top: size.height * 0.4),
                   padding: EdgeInsets.only(
                     top: size.height * 0.12,
-                    left: kDefaultPaddin,
-                    right: kDefaultPaddin,
+                    left: getProportionateScreenWidth(10.0),
+                    right: getProportionateScreenWidth(10.0),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.white,

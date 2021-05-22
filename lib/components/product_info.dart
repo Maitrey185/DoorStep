@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:shape_cam/cart/cartItem.dart';
 import 'package:shape_cam/cart/cart_screen.dart';
+import 'package:shape_cam/cart/size_config.dart';
 import 'package:shape_cam/constants.dart';
 import '../product/detailed_product.dart';
 import 'package:shape_cam/product/detailed_product.dart';
@@ -42,25 +43,24 @@ class _ProductInfoState extends State<ProductInfo> {
   int numOfItems = 1;
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 Text("Color"),
-                Row(
-                  children: <Widget>[
-                    ColorDot(
-                      color: Color(0xFF356C95),
-                      isSelected: true,
-                    ),
-                  ],
+                ColorDot(
+                  color: Color(0xFF356C95),
+                  isSelected: true,
                 ),
               ],
             ),
+
             RichText(
               text: TextSpan(
                 style: TextStyle(color: kTextColor),
@@ -71,22 +71,22 @@ class _ProductInfoState extends State<ProductInfo> {
                     style: Theme.of(context)
                         .textTheme
                         .headline5
-                        .copyWith(fontWeight: FontWeight.bold),
+                        .copyWith(fontWeight: FontWeight.bold,fontSize: getProportionateScreenHeight(30.0)),
                   )
                 ],
               ),
             ),
           ],
         ),
-        SizedBox(height: kDefaultPaddin / 2),
+        SizedBox(height: getProportionateScreenHeight(5.0)),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
+          padding: EdgeInsets.symmetric(vertical: getProportionateScreenHeight(10.0)),
           child: Text(
             widget.product.description,
-            style: TextStyle(height: 1.5),
+            style: TextStyle(height: getProportionateScreenHeight(1.5)),
           ),
         ),
-        SizedBox(height: kDefaultPaddin / 2),
+        SizedBox(height: getProportionateScreenHeight(5.0)),
         Row(
           children: <Widget>[
             buildOutlineButton(
@@ -101,7 +101,7 @@ class _ProductInfoState extends State<ProductInfo> {
             ),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: kDefaultPaddin / 2),
+                   EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(5.0)),
               child: Text(
                 // if our item is less  then 10 then  it shows 01 02 like that
                 numOfItems.toString().padLeft(2, "0"),
@@ -116,10 +116,11 @@ class _ProductInfoState extends State<ProductInfo> {
                   });
                 }),
             Container(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.symmetric(vertical:getProportionateScreenHeight(8.0), horizontal: getProportionateScreenWidth(8.0)),
               // height: 32,
               // width: 32,
               child: RatingBar.readOnly(
+                size: getProportionateScreenHeight(50),
                 initialRating: widget.product.rating.toDouble(),
                 filledColor: Color(0xFFFF7675),
                 halfFilledColor: Color(0xFFFF7675),
@@ -133,17 +134,17 @@ class _ProductInfoState extends State<ProductInfo> {
             ),
           ],
         ),
-        SizedBox(height: kDefaultPaddin / 2),
+        SizedBox(height: getProportionateScreenHeight(5.0)),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
+          padding:  EdgeInsets.symmetric(vertical: getProportionateScreenHeight(10.0)),
           child: Row(
             children: <Widget>[
               Expanded(
                 flex: 1,
                 child: Container(
-                  margin: EdgeInsets.only(right: kDefaultPaddin),
-                  height: 50,
-                  width: 58,
+                  margin: EdgeInsets.only(right: getProportionateScreenWidth(10.0)),
+                  height: getProportionateScreenHeight(50.0),
+                  width: getProportionateScreenWidth(58.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
                     border: Border.all(
@@ -202,7 +203,7 @@ class _ProductInfoState extends State<ProductInfo> {
               Expanded(
                 flex: 3,
                 child: SizedBox(
-                  height: 50,
+                  height: getProportionateScreenHeight(50.0),
                   child: FlatButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18)),
@@ -224,7 +225,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     child: Text(
                       "Buy  Now".toUpperCase(),
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: getProportionateScreenHeight(17.0),
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -241,8 +242,8 @@ class _ProductInfoState extends State<ProductInfo> {
 
   SizedBox buildOutlineButton({IconData icon, Function press}) {
     return SizedBox(
-      width: 40,
-      height: 32,
+      width: getProportionateScreenWidth(40.0),
+      height: getProportionateScreenHeight(32.0),
       child: OutlineButton(
         padding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
@@ -274,12 +275,12 @@ class ColorDot extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: kDefaultPaddin / 4,
-        right: kDefaultPaddin / 2,
+        top: getProportionateScreenHeight(2.5) ,
+        right: getProportionateScreenWidth(5.0) ,
       ),
-      padding: EdgeInsets.all(2.5),
-      height: 24,
-      width: 24,
+      padding: EdgeInsets.symmetric(vertical:getProportionateScreenHeight(2.5), horizontal: getProportionateScreenHeight(2.5)),
+      height: getProportionateScreenHeight(24.0),
+      width: getProportionateScreenWidth(24.0),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(

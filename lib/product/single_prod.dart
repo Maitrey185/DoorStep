@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shape_cam/cart/size_config.dart';
 import 'package:shape_cam/product/details_screen.dart';
 import 'package:shape_cam/product/detailed_product.dart';
 import 'package:http/http.dart' as http;
@@ -20,6 +21,7 @@ class SingleProd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return InkWell(
       onTap: () async {
         http.Response response = await http
@@ -53,8 +55,8 @@ class SingleProd extends StatelessWidget {
       borderRadius: BorderRadius.circular(50.0),
       child: Container(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.0)),
-        height: 200.0,
-        padding: EdgeInsets.all(3.0),
+        height: getProportionateScreenHeight(200.0),
+        padding: EdgeInsets.only(top: getProportionateScreenHeight(3.0), bottom: getProportionateScreenHeight(3.0)),
         child: GridTile(
           child: Hero(
             tag: 'prodImg$prodId',
@@ -64,6 +66,7 @@ class SingleProd extends StatelessWidget {
             ),
           ),
           footer: Container(
+            height: getProportionateScreenHeight(60.0),
             color: Colors.white70,
             child: ListTile(
               leading: Text(

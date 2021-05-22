@@ -10,6 +10,7 @@ import 'round_button.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_config/flutter_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shape_cam/cart/size_config.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailFieldController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -38,10 +40,10 @@ class _LoginScreenState extends State<LoginScreen> {
         child: ListView(
           children: [
             SizedBox(
-              height: 90.0,
+              height: getProportionateScreenHeight(60.0),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24.0)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -51,19 +53,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.raleway(
                       textStyle: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 65.0),
+                          fontWeight: FontWeight.bold, fontSize: getProportionateScreenHeight(65.0)),
                     ),
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: getProportionateScreenHeight(20.0),
                   ),
                   Text(
                     "Sign in with your email and password",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15.0),
+                    style: TextStyle(fontSize: getProportionateScreenHeight(15.0)),
                   ),
                   SizedBox(
-                    height: 60.0,
+                    height: getProportionateScreenHeight(60.0),
                   ),
                   TextFormField(
                     textInputAction: TextInputAction.next,
@@ -88,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 30.0,
+                    height: getProportionateScreenHeight(30.0),
                   ),
                   TextFormField(
                     controller: passwordFieldController,
@@ -112,15 +114,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 12.0,
+                    height: getProportionateScreenHeight(12.0),
                   ),
                   Text(
                     errorMsg,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.red, fontSize: 15.0),
+                    style: TextStyle(color: Colors.red, fontSize: getProportionateScreenHeight(15.0)),
                   ),
                   SizedBox(
-                    height: 12.0,
+                    height: getProportionateScreenHeight(12.0),
                   ),
                   RoundButton(
                       colour: Color(0xFFFF7675),
