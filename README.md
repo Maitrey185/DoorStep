@@ -60,18 +60,27 @@ Ecommerce application that enables user to shop for Sunglasses and Prescribed gl
 
 ## What did you learn from this project
 
-Each team member and mentor can briefly describe what they learnt during Skill Up 2.0, how they applied it to their project and what challenges they faced.
 
-1. Apurv Kulkarni - Creating own REST API with Node.js, Express.js.
-                    About state management in flutter using GetX package.
+1. Apurv Kulkarni 
+   <br/> 
+   <span>Creating own REST API with Node.js, Express.js.</span>
+   <br/>
+   <span>About state management in flutter using GetX package.</span>
 
-2. Maitrey Patil - Using Github to manage a project.
-                   Creating REST API with Node.js, Express.js.
-                   Creating payment gateway in flutter using razorpay.
+2. Maitrey Patil 
+   <br/>
+   <span>Using Github to manage a project.</span>
+   <br/>
+   <span>Creating REST API with Node.js, Express.js.</span>
+   </br>
+   <span>Creating payment gateway in flutter using razorpay.</span>
 
 
-3. Jhagrut Lalwani - State management in Flutter
-                     MongoDB Atlas
+3. Jhagrut Lalwani 
+   <br/>
+   <span>State management in Flutter</span>
+   </br>
+   <span>MongoDB Atlas</span>
 
 
 ## Future scope
