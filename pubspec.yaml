@@ -11,13 +11,20 @@ dependencies:
     sdk: flutter
   hive: ^1.0.0
   hive_flutter: ^0.3.1
-  path_provider: ^1.6.15
+
   logger: ^0.9.4
   razorpay_flutter: ^1.2.6
   cupertino_icons: ^1.0.0
   carousel_pro: ^1.0.0
   flutter_svg: ^0.22.0
   uuid: ^2.2.2
+  path_provider: ^1.6.28
+  shared_preferences: any
+  intl: ^0.17.0
+
+dependency_overrides:
+  # Override path_provider to pick up fixes for FFI changes.
+  path_provider: ^2.0.0-nullsafety.1
 
 dev_dependencies:
   flutter_test:
@@ -32,7 +39,7 @@ dev_dependencies:
   google_fonts: ^1.1.2
   rating_bar: ^0.2.0
   font_awesome_flutter: ^8.12.0
-  shared_preferences: ^0.5.12+4
+
   
 
 

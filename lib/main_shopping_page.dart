@@ -9,6 +9,7 @@ import 'login_screen.dart';
 import 'profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shape_cam/cart/cart_screen.dart';
+import 'cart/orders_screen.dart';
 
 class MainShop extends StatelessWidget {
   final id;
@@ -88,6 +89,21 @@ class MainShop extends StatelessWidget {
                         title: Text('My Profile'),
                         onTap: () {
                           Get.to(ProfileScreen(), arguments: [id, token]);
+                        },
+                      ),
+                      Divider(
+                        height: 1,
+                        thickness: 1,
+                      ),
+                      ListTile(
+                        leading: Icon(
+                          Icons.account_circle_outlined,
+                          size: 30.0,
+                          color: Colors.black,
+                        ),
+                        title: Text('My Orders'),
+                        onTap: () {
+                          Get.to(OrdersScreen());
                         },
                       ),
                       Divider(

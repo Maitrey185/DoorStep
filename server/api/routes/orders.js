@@ -10,6 +10,8 @@ router.post('/', checkAuth, OrdersController.createOneOrder);
 
 router.get('/:orderId', checkAuth, OrdersController.getOneOrder);
 
+router.get('/user/:userId', checkAuth, OrdersController.getOrderByUserId);
+
 router.patch('/:orderId', checkAuth, OrdersController.updateOneOrder);
 
 router.delete('/:orderId', checkAuth, OrdersController.deleteOneOrder);

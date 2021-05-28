@@ -1,22 +1,28 @@
 const mongoose = require('mongoose');
 
+var date = getDate();
+
 const orderSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     userId: mongoose.Schema.Types.ObjectId,
-    //product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-    //quantity: { type: Number, default: 1 },
     cart: Array,
-    dateOrdered: Date,
-    expectedDelivery: Date,
-    dateDelivered: Date,
-    customer: { type: Map, of: String},
-    deliveryAddress: { type: Array, default: [] },
-    status: { type: String, required: true },
+    dateOrdered: {type: String, default: date},
+    deliveryAddress: { type: String, required: true },
     paymentmethod: { type: String, required: true },
-    shippingCharges: { type: Number, required: true},
-    tax: { type: Number, required: true},
     cartTotal: { type: Number, required: true}
 });
+
+
+function getDate(){
+  let date_ob = new Date();
+  let date = ("0" + date_ob.getDate()).slice(-2);
+  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+  let year = date_ob.getFullYear();
+  let hours = date_ob.getHours();
+  let minutes = date_ob.getMinutes();
+  date = year + "-" + month + "-" + date + " " + hours + ":" + minutes ;
+  return date;
+}
 
 
 module.exports = mongoose.model('Order', orderSchema);
