@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:shape_cam/cart/size_config.dart';
-import 'product/all_products.dart';
+import 'product/product_controller.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:shape_cam/user_data.dart';
 import 'package:get/get.dart';
@@ -9,7 +9,7 @@ import 'login_screen.dart';
 import 'profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shape_cam/cart/cart_screen.dart';
-import 'cart/orders_screen.dart';
+import 'orders/orders_screen.dart';
 
 class MainShop extends StatelessWidget {
   final id;
@@ -60,7 +60,8 @@ class MainShop extends StatelessWidget {
                                         '${controller.imgUrl}'),
                               ),
                             ),
-                            SizedBox(height: getProportionateScreenHeight(20.0)),
+                            SizedBox(
+                                height: getProportionateScreenHeight(20.0)),
                             Text(
                               'Hello, ${controller.name}!',
                               textAlign: TextAlign.center,
@@ -75,7 +76,9 @@ class MainShop extends StatelessWidget {
                         thickness: 1,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal:getProportionateScreenWidth(16.0) ,vertical: getProportionateScreenHeight(16.0)),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getProportionateScreenWidth(16.0),
+                            vertical: getProportionateScreenHeight(16.0)),
                         child: Text(
                           'Check and Update your Profile',
                         ),
@@ -111,7 +114,9 @@ class MainShop extends StatelessWidget {
                         thickness: 1,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal:getProportionateScreenWidth(16.0) ,vertical: getProportionateScreenHeight(16.0)),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getProportionateScreenWidth(16.0),
+                            vertical: getProportionateScreenHeight(16.0)),
                         child: Text(
                           'Logout',
                         ),

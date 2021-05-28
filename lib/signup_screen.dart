@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:shape_cam/login_screen.dart';
 import 'main_shopping_page.dart';
-import 'my_text_field.dart';
 import 'round_button.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -52,7 +52,8 @@ class _SignUpState extends State<SignUp> {
               height: getProportionateScreenHeight(10.0),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24.0)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(24.0)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -62,7 +63,8 @@ class _SignUpState extends State<SignUp> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.raleway(
                       textStyle: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: getProportionateScreenHeight(50.0)),
+                          fontWeight: FontWeight.bold,
+                          fontSize: getProportionateScreenHeight(50.0)),
                     ),
                   ),
 
@@ -201,7 +203,7 @@ class _SignUpState extends State<SignUp> {
                       postData(FlutterConfig.get('SERVER_URL') + 'user/signup');
                     },
                   ),
-                  FlatButton(
+                  TextButton(
                     onPressed: () {
                       Get.to(LoginScreen());
                     },
@@ -368,20 +370,30 @@ class _SignUpState extends State<SignUp> {
         } else if (res.statusCode == 200) {
           var data = jsonDecode(res.body);
           print(data["user"]["_id"]);
-          String s1 = data['user']['profilePicture'].toString().split('\\')[0];
-          String s2 = data['user']['profilePicture'].toString().split('\\')[1];
-          String s3 = data['user']['profilePicture'].toString().split('\\')[2];
-          String imgUrl = '$s1/$s2/$s3';
+
           SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString("email", emailFieldController.text.trim());
           prefs.setString("id", data["user"]["_id"]);
           prefs.setString("token", data['token']);
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  MainShop(data["user"]["_id"], data['token']),
-            ),
+            MaterialPageRoute(builder: (BuildContext context) {
+              return FutureBuilder(
+                future: Hive.openBox('cartBox'),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasError)
+                      return Text(snapshot.error.toString());
+                    else
+                      return MainShop(data["user"]["_id"], data['token']);
+                  }
+                  // Although opening a Box takes a very short time,
+                  // we still need to return something before the Future completes.
+                  else
+                    return Scaffold();
+                },
+              );
+            }),
             (route) => false,
           );
         }

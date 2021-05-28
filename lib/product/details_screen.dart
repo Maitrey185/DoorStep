@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shape_cam/cart/size_config.dart';
 import 'package:shape_cam/product/detailed_product.dart';
 import '../components/details_body.dart';
-import 'package:shape_cam/constants.dart';
 import 'package:get/get.dart';
 import 'package:shape_cam/cart/cart_screen.dart';
 
@@ -12,8 +12,9 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return Scaffold(
-      // each product have a color
       backgroundColor: Color(0xFFFF7675),
       appBar: buildAppBar(context),
       body: Body(product: product),
@@ -42,7 +43,7 @@ class DetailsScreen extends StatelessWidget {
             Get.to(CartScreen());
           },
         ),
-        SizedBox(width: kDefaultPaddin / 2)
+        SizedBox(width: getProportionateScreenWidth(5.0))
       ],
     );
   }

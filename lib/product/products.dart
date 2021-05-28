@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shape_cam/cart/size_config.dart';
 import 'single_prod.dart';
 
 class Products extends StatelessWidget {
@@ -16,6 +17,7 @@ class Products extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Row(
       children: [
         Expanded(
@@ -24,6 +26,9 @@ class Products extends StatelessWidget {
               prodName: name1,
               prodPrice: price1,
               prodPicture: picture1),
+        ),
+        SizedBox(
+          width: getProportionateScreenWidth(4.0),
         ),
         Expanded(
           child: SingleProd(

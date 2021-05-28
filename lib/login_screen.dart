@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:shape_cam/main_shopping_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shape_cam/signup_screen.dart';
-import 'my_text_field.dart';
 import 'round_button.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_config/flutter_config.dart';
@@ -43,7 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
               height: getProportionateScreenHeight(60.0),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24.0)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(24.0)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -53,7 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.raleway(
                       textStyle: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: getProportionateScreenHeight(65.0)),
+                          fontWeight: FontWeight.bold,
+                          fontSize: getProportionateScreenHeight(65.0)),
                     ),
                   ),
                   SizedBox(
@@ -62,7 +64,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     "Sign in with your email and password",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: getProportionateScreenHeight(15.0)),
+                    style:
+                        TextStyle(fontSize: getProportionateScreenHeight(15.0)),
                   ),
                   SizedBox(
                     height: getProportionateScreenHeight(60.0),
@@ -119,7 +122,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     errorMsg,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.red, fontSize: getProportionateScreenHeight(15.0)),
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: getProportionateScreenHeight(15.0)),
                   ),
                   SizedBox(
                     height: getProportionateScreenHeight(12.0),
@@ -146,16 +151,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         } else if (res.statusCode == 200) {
                           var data = jsonDecode(res.body);
                           print(data["user"]["_id"]);
-                          String s1 = data['user']['profilePicture']
-                              .toString()
-                              .split('\\')[0];
-                          String s2 = data['user']['profilePicture']
-                              .toString()
-                              .split('\\')[1];
-                          String s3 = data['user']['profilePicture']
-                              .toString()
-                              .split('\\')[2];
-                          String imgUrl = '$s1/$s2/$s3';
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           prefs.setString(
@@ -164,10 +159,25 @@ class _LoginScreenState extends State<LoginScreen> {
                           prefs.setString("token", data['token']);
                           Navigator.pushAndRemoveUntil(
                             context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  MainShop(data["user"]["_id"], data['token']),
-                            ),
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return FutureBuilder(
+                                future: Hive.openBox('cartBox'),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.done) {
+                                    if (snapshot.hasError)
+                                      return Text(snapshot.error.toString());
+                                    else
+                                      return MainShop(
+                                          data["user"]["_id"], data['token']);
+                                  }
+                                  // Although opening a Box takes a very short time,
+                                  // we still need to return something before the Future completes.
+                                  else
+                                    return Scaffold();
+                                },
+                              );
+                            }),
                             (route) => false,
                           );
                         } else {
@@ -176,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         }
                       }),
-                  FlatButton(
+                  TextButton(
                     onPressed: () {
                       Get.to(SignUp());
                     },

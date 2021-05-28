@@ -3,7 +3,6 @@ import 'package:hive/hive.dart';
 import 'package:shape_cam/cart/cartItem.dart';
 import 'package:shape_cam/cart/cart_screen.dart';
 import 'package:shape_cam/cart/size_config.dart';
-import 'package:shape_cam/constants.dart';
 import '../product/detailed_product.dart';
 import 'package:shape_cam/product/detailed_product.dart';
 import 'package:rating_bar/rating_bar.dart';
@@ -60,18 +59,16 @@ class _ProductInfoState extends State<ProductInfo> {
                 ),
               ],
             ),
-
             RichText(
               text: TextSpan(
-                style: TextStyle(color: kTextColor),
+                style: TextStyle(color: Color(0xFF535353)),
                 children: [
                   TextSpan(text: "Dimensions\n"),
                   TextSpan(
                     text: "${widget.product.dimensions}",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        .copyWith(fontWeight: FontWeight.bold,fontSize: getProportionateScreenHeight(30.0)),
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: getProportionateScreenHeight(30.0)),
                   )
                 ],
               ),
@@ -80,7 +77,8 @@ class _ProductInfoState extends State<ProductInfo> {
         ),
         SizedBox(height: getProportionateScreenHeight(5.0)),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: getProportionateScreenHeight(10.0)),
+          padding: EdgeInsets.symmetric(
+              vertical: getProportionateScreenHeight(10.0)),
           child: Text(
             widget.product.description,
             style: TextStyle(height: getProportionateScreenHeight(1.5)),
@@ -100,8 +98,8 @@ class _ProductInfoState extends State<ProductInfo> {
               },
             ),
             Padding(
-              padding:
-                   EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(5.0)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(5.0)),
               child: Text(
                 // if our item is less  then 10 then  it shows 01 02 like that
                 numOfItems.toString().padLeft(2, "0"),
@@ -116,11 +114,13 @@ class _ProductInfoState extends State<ProductInfo> {
                   });
                 }),
             Container(
-              padding: EdgeInsets.symmetric(vertical:getProportionateScreenHeight(8.0), horizontal: getProportionateScreenWidth(8.0)),
+              padding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenHeight(8.0),
+                  horizontal: getProportionateScreenWidth(8.0)),
               // height: 32,
               // width: 32,
               child: RatingBar.readOnly(
-                size: getProportionateScreenHeight(50),
+                size: getProportionateScreenHeight(40),
                 initialRating: widget.product.rating.toDouble(),
                 filledColor: Color(0xFFFF7675),
                 halfFilledColor: Color(0xFFFF7675),
@@ -136,13 +136,15 @@ class _ProductInfoState extends State<ProductInfo> {
         ),
         SizedBox(height: getProportionateScreenHeight(5.0)),
         Padding(
-          padding:  EdgeInsets.symmetric(vertical: getProportionateScreenHeight(10.0)),
+          padding: EdgeInsets.symmetric(
+              vertical: getProportionateScreenHeight(10.0)),
           child: Row(
             children: <Widget>[
               Expanded(
                 flex: 1,
                 child: Container(
-                  margin: EdgeInsets.only(right: getProportionateScreenWidth(10.0)),
+                  margin:
+                      EdgeInsets.only(right: getProportionateScreenWidth(10.0)),
                   height: getProportionateScreenHeight(50.0),
                   width: getProportionateScreenWidth(58.0),
                   decoration: BoxDecoration(
@@ -275,10 +277,12 @@ class ColorDot extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: getProportionateScreenHeight(2.5) ,
-        right: getProportionateScreenWidth(5.0) ,
+        top: getProportionateScreenHeight(2.5),
+        right: getProportionateScreenWidth(5.0),
       ),
-      padding: EdgeInsets.symmetric(vertical:getProportionateScreenHeight(2.5), horizontal: getProportionateScreenHeight(2.5)),
+      padding: EdgeInsets.symmetric(
+          vertical: getProportionateScreenHeight(2.5),
+          horizontal: getProportionateScreenHeight(2.5)),
       height: getProportionateScreenHeight(24.0),
       width: getProportionateScreenWidth(24.0),
       decoration: BoxDecoration(

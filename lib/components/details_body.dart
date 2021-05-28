@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shape_cam/cart/size_config.dart';
-import 'package:shape_cam/constants.dart';
 import 'package:shape_cam/product/detailed_product.dart';
 import 'product_title_with_image.dart';
 import 'product_info.dart';
@@ -12,7 +11,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    // It provide us total height and width
+
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(

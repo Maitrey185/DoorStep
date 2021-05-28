@@ -18,13 +18,10 @@ dependencies:
   carousel_pro: ^1.0.0
   flutter_svg: ^0.22.0
   uuid: ^2.2.2
-  path_provider: ^1.6.28
-  shared_preferences: any
   intl: ^0.17.0
+  shared_preferences: ^0.5.12+4
+  path_provider: ^1.6.28
 
-dependency_overrides:
-  # Override path_provider to pick up fixes for FFI changes.
-  path_provider: ^2.0.0-nullsafety.1
 
 dev_dependencies:
   flutter_test:

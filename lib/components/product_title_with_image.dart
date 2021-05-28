@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shape_cam/cart/size_config.dart';
 import 'package:shape_cam/product/detailed_product.dart';
-import 'package:shape_cam/constants.dart';
 import 'package:flutter_config/flutter_config.dart';
 
 class ProductTitleWithImage extends StatelessWidget {
@@ -16,7 +15,8 @@ class ProductTitleWithImage extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(10.0)),
+      padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(10.0)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
