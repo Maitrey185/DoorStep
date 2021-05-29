@@ -82,7 +82,7 @@ Ecommerce application that enables user to shop for Sunglasses and Prescribed gl
    </br>
    <span>State management in Flutter</span>
    </br>
-   <span>Upload images in firebase storage</span>
+   <span>Upload images in Firebase Store</span>
 
 
 ## Future scope
