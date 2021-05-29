@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:shape_cam/cart/cartItem.dart';
 import 'package:shape_cam/cart/cart_screen.dart';
 import 'package:shape_cam/cart/size_config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../product/detailed_product.dart';
 import 'package:shape_cam/product/detailed_product.dart';
 import 'package:rating_bar/rating_bar.dart';
@@ -21,22 +22,32 @@ class ProductInfo extends StatefulWidget {
 }
 
 class _ProductInfoState extends State<ProductInfo> {
-  bool isProductInCrt = false;
+  bool isProductInCart = false;
   int index = -1;
 
-  final cartBox = Hive.box('cartBox');
+  var cartBox;
 
   @override
   void initState() {
-    for (int i = 0; i < cartBox.length; i++) {
-      final cartItem = cartBox.getAt(i) as CartItem;
-      if (widget.product.id == cartItem.product.id && cartItem.itemCount > 0) {
-        isProductInCrt = true;
-        index = i;
-        break;
-      }
-    }
     super.initState();
+    getBox();
+  }
+
+  Future<void> getBox() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var id = prefs.getString("id");
+    setState(() {
+      cartBox = Hive.box('cartBox$id');
+      for (int i = 0; i < cartBox.length; i++) {
+        final cartItem = cartBox.getAt(i) as CartItem;
+        if (widget.product.id == cartItem.product.id &&
+            cartItem.itemCount > 0) {
+          isProductInCart = true;
+          index = i;
+          break;
+        }
+      }
+    });
   }
 
   int numOfItems = 1;
@@ -156,7 +167,7 @@ class _ProductInfoState extends State<ProductInfo> {
                   child: TextButton(
                     child: Icon(Icons.add_shopping_cart, color: Colors.black),
                     onPressed: () {
-                      if (!isProductInCrt) {
+                      if (!isProductInCart) {
                         final cartItem = CartItem(
                             product: widget.product, itemCount: numOfItems);
                         addToCart(cartItem);
@@ -178,6 +189,7 @@ class _ProductInfoState extends State<ProductInfo> {
                         );
                       } else {
                         final cartItem = cartBox.getAt(index) as CartItem;
+                        print("AA");
                         setState(() {
                           cartItem.itemCount = cartItem.itemCount + numOfItems;
                         });
@@ -211,7 +223,7 @@ class _ProductInfoState extends State<ProductInfo> {
                         borderRadius: BorderRadius.circular(18)),
                     color: Color(0xFFFF7675),
                     onPressed: () {
-                      if (!isProductInCrt) {
+                      if (!isProductInCart) {
                         final cartItem = CartItem(
                             product: widget.product, itemCount: numOfItems);
                         addToCart(cartItem);
@@ -258,7 +270,6 @@ class _ProductInfoState extends State<ProductInfo> {
   }
 
   void addToCart(CartItem cartItem) {
-    final cartBox = Hive.box('cartBox');
     cartBox.add(cartItem);
   }
 }

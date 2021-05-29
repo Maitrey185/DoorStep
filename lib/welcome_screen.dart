@@ -7,7 +7,6 @@ import 'login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -15,13 +14,7 @@ class WelcomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-              color: Color(0xFFF2EAEB)
-            // image: DecorationImage(
-            //   //image: NetworkImage("https://images.unsplash.com/photo-1558066858-246fbbf9446f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=282&q=80"),
-            //   fit: BoxFit.cover,
-            // ),
-          ),
+          decoration: BoxDecoration(color: Color(0xFFF2EAEB)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
@@ -32,44 +25,42 @@ class WelcomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: new DecorationImage(
                       image: AssetImage("images/bg.jpg"),
-
                       fit: BoxFit.cover,
                     ),
                   ),
                   alignment: Alignment.center,
-                  padding: EdgeInsets.only(top: getProportionateScreenHeight(150.0), bottom: getProportionateScreenHeight(100.0)),
+                  padding: EdgeInsets.only(
+                      top: getProportionateScreenHeight(150.0),
+                      bottom: getProportionateScreenHeight(100.0)),
                   child: Column(
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(1.0)),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getProportionateScreenWidth(1.0)),
                         child: Text(
                           "ShapeCam",
-                          style: GoogleFonts.raleway(textStyle: TextStyle(
-                              fontSize: getProportionateScreenHeight(60.0),
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                          ),),
+                          style: GoogleFonts.raleway(
+                            textStyle: TextStyle(
+                                fontSize: getProportionateScreenHeight(60.0),
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                        ),
                       ),
-
-                      SizedBox(
-                          height: getProportionateScreenHeight(40.0)
-                      )
+                      SizedBox(height: getProportionateScreenHeight(40.0))
                     ],
                   ),
                 ),
               ),
-
-
               SizedBox(
                 height: getProportionateScreenHeight(80.0),
               ),
-
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24.0)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(24.0)),
                     child: RoundButton(
                         colour: Color(0xFFFF7675),
                         title: 'Sign Up',
@@ -78,7 +69,8 @@ class WelcomeScreen extends StatelessWidget {
                         }),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24.0)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(24.0)),
                     child: RoundButton(
                         colour: Color(0xFFFFBBA3),
                         title: 'Login',
@@ -88,7 +80,6 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-
             ],
           ),
         ),

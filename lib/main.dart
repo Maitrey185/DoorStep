@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       home: widget.isLoggedIn
           ? FutureBuilder(
-              future: Hive.openBox('cartBox'),
+              future: Hive.openBox('cartBox${widget.id}'),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasError)

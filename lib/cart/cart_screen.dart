@@ -6,10 +6,10 @@ import 'cartItem.dart';
 import 'cart_card.dart';
 import 'size_config.dart';
 import 'check_out_card.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shape_cam/cart/cartItem.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -19,17 +19,32 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   int cartLength = 0;
   var uuid = Uuid();
+  double total = 0.0;
+  String id = "";
+
+  @override
+  void initState() {
+    super.initState();
+    getBox();
+  }
+
+  Future<void> getBox() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      id = prefs.getString("id");
+      var cartBox = Hive.box('cartBox$id');
+      cartLength = cartBox.length;
+      for (int i = 0; i < cartBox.length; i++) {
+        final cartItem = cartBox.getAt(i) as CartItem;
+        total = total + cartItem.product.price * cartItem.itemCount;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    var cartBox = Hive.box('cartBox');
-    cartLength = cartBox.length;
-    double total = 0.0;
-    for (int i = 0; i < cartBox.length; i++) {
-      final cartItem = cartBox.getAt(i) as CartItem;
-      total = total + cartItem.product.price * cartItem.itemCount;
-    }
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: buildAppBar(context),
@@ -67,7 +82,7 @@ class _CartScreenState extends State<CartScreen> {
                   ],
                 )
               : ValueListenableBuilder(
-                  valueListenable: Hive.box('cartBox').listenable(),
+                  valueListenable: Hive.box('cartBox$id').listenable(),
                   builder: (context, cartBox, widget) {
                     return ListView.builder(
                       itemCount: cartBox.length,
@@ -84,6 +99,7 @@ class _CartScreenState extends State<CartScreen> {
                               setState(() {
                                 total = total - cartItem.product.price;
                                 cartBox.deleteAt(index);
+                                getBox();
                               });
                             },
                             background: Container(

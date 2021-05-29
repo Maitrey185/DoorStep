@@ -161,7 +161,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             context,
                             MaterialPageRoute(builder: (BuildContext context) {
                               return FutureBuilder(
-                                future: Hive.openBox('cartBox'),
+                                future: Hive.openBox(
+                                    'cartBox${data["user"]["_id"]}'),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState ==
                                       ConnectionState.done) {
@@ -190,7 +191,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       Get.to(SignUp());
                     },
-                    child: Text("New User? Create an Account"),
+                    child: Text(
+                      "New User? Create an Account",
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ],
               ),
