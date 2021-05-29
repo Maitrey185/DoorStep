@@ -37,6 +37,9 @@ class RazorpayService {
       'key': FlutterConfig.get('KEY_ID'),
       'amount': amount,
       'prefill': {'contact': number, 'email': email},
+      'theme': {
+        'color': '#FF7675',
+      }
     };
 
     _razorpay.open(options);

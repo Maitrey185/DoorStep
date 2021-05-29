@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'theme.dart';
-
+import 'package:shape_cam/cart/size_config.dart';
 class OrdersModel extends StatelessWidget {
   final orderNumber;
   final orderDate;
@@ -12,24 +12,25 @@ class OrdersModel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     var _theme = Theme.of(context);
     return Container(
-        padding: EdgeInsets.all(AppSizes.imageRadius),
+        padding: EdgeInsets.all(getProportionateScreenHeight(8.0)),
         child: Container(
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: _theme.primaryColor.withOpacity(0.3),
-                blurRadius: AppSizes.imageRadius,
+                color: Color(0xFFFFBBA3).withOpacity(0.8),
+                blurRadius: getProportionateScreenHeight(8.0),
               )
             ],
-            borderRadius: BorderRadius.circular(AppSizes.imageRadius),
+            borderRadius: BorderRadius.circular(getProportionateScreenHeight(8.0)),
             color: AppColors.white,
           ),
           child: Padding(
-            padding: EdgeInsets.all(AppSizes.sidePadding),
+            padding: EdgeInsets.all(getProportionateScreenHeight(15.0)),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,29 +40,31 @@ class OrdersModel extends StatelessWidget {
                       TextSpan(
                         text: 'Order: ',
                         style: _theme.textTheme.display1.copyWith(
-                            color: _theme.primaryColorLight,
-                            fontWeight: FontWeight.normal),
+                            color: Color(0xFFFF7675),
+                            fontSize: getProportionateScreenHeight(20.0),
+                            fontWeight: FontWeight.w700),
                       ),
                       TextSpan(
-                        text: '#' + orderNumber.toString(),
+                        text: '#' + orderNumber.toString().substring(1,8),
                         style: _theme.textTheme.display1
-                            .copyWith(fontWeight: FontWeight.w700),
+                            .copyWith(color: Color(0xFFFF7675),fontSize: getProportionateScreenHeight(20.0),
+                            fontWeight: FontWeight.w700),
                       ),
                     ])),
-                    Text(orderDate.toString(),
+                    Text(orderDate.toString().substring(0,10),
                         style: _theme.textTheme.display3
-                            .copyWith(color: AppColors.red))
+                            .copyWith(fontSize: getProportionateScreenHeight(20.0),color: Color(0xFFFFBBA3)))
                   ],
                 ),
                 SizedBox(
-                  height: AppSizes.linePadding,
+                  height: getProportionateScreenHeight(4.0),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     SizedBox(
-                      height: AppSizes.sidePadding,
+                      height: getProportionateScreenHeight(15.0),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,65 +74,72 @@ class OrdersModel extends StatelessWidget {
                             Text(
                               'Quantity: ',
                               style: _theme.textTheme.display1
-                                  .copyWith(color: _theme.primaryColorLight),
+                                  .copyWith(fontSize: getProportionateScreenHeight(17.0),color: Color(0xFFFFBBA3)),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  left: AppSizes.linePadding),
+                              padding: EdgeInsets.only(
+                                  left: getProportionateScreenWidth(4.0)),
                               child: Text(
                                 totalQuantity.toString(),
-                                style: _theme.textTheme.display1,
+                                style: _theme.textTheme.display1
+                                      .copyWith(color: Color(0xFFFF7675),fontSize: getProportionateScreenHeight(17.0))
                               ),
                             ),
                           ],
                         ),
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              'Totat Amount: ',
-                              style: _theme.textTheme.display1
-                                  .copyWith(color: _theme.primaryColorLight),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: AppSizes.sidePadding),
-                              child: Text(
-                                '\$' + totalPrice.toString(),
-                                //total amount
-                                style: _theme.textTheme.display1,
+                        Padding(
+                          padding: EdgeInsets.only(left: getProportionateScreenWidth(8.0)),
+                          child: Row(
+
+                            children: <Widget>[
+                              Text(
+                                'Total Amount: ',
+                                style: _theme.textTheme.display1
+                                    .copyWith(fontSize: getProportionateScreenHeight(17.0),color: Color(0xFFFFBBA3)),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: getProportionateScreenHeight(2.0)),
+                                child: Text(
+                                  '\$' + totalPrice.toString(),
+                                  //total amount
+                                  style: _theme.textTheme.display1.copyWith(color: Color(0xFFFF7675),
+                                                                          fontSize: getProportionateScreenHeight(17.0))
+                                ),
+                              ),
+                            ],
+                          ),
                         )
                       ],
                     )
                   ],
                 ),
                 SizedBox(
-                  height: AppSizes.linePadding,
+                  height: getProportionateScreenHeight(4.0),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     RaisedButton(
+                      disabledColor: Colors.white,
                       padding: EdgeInsets.only(
-                          left: 24, right: 24, top: 10, bottom: 10),
-                      color: AppColors.white,
+                          left: getProportionateScreenWidth(24.0), right: getProportionateScreenWidth(24.0), top: getProportionateScreenHeight(10.0), bottom: getProportionateScreenHeight(10.0)),
+
                       // onPressed: () {
                       //   onClick(order.id);
                       // },
                       shape: RoundedRectangleBorder(
                           borderRadius:
-                              BorderRadius.circular(AppSizes.imageRadius),
-                          side: BorderSide(color: AppColors.black, width: 2)),
+                              BorderRadius.circular(getProportionateScreenHeight(20.0)),
+                          side: BorderSide(color: AppColors.black, width: getProportionateScreenWidth(2))),
                       child: Text(
                         'Details',
-                        style: _theme.textTheme.display1,
+                        style: _theme.textTheme.display1.copyWith(color: Color(0xFFFF7675),fontSize: getProportionateScreenHeight(20.0))
                       ),
                     ),
                     Text("delivered",
                         style: _theme.textTheme.display1
-                            .copyWith(color: AppColors.green)),
+                            .copyWith(fontSize: getProportionateScreenHeight(20.0),color: AppColors.green)),
                   ],
                 )
               ],
