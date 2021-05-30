@@ -78,11 +78,9 @@ Ecommerce application that enables user to shop for Sunglasses and Prescribed gl
 
 3. Jhagrut Lalwani 
    <br/>
-   <span>Creating REST API with Node.js, Express.js</span>
-   </br>
    <span>State management in Flutter</span>
    </br>
-   <span>Upload images in Firebase Store</span>
+   <span>MongoDB Atlas</span>
 
 
 ## Future scope
