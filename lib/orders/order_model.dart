@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'theme.dart';
+import 'package:get/get.dart';
 import 'package:shape_cam/cart/size_config.dart';
+import 'order_details.dart';
 class OrdersModel extends StatelessWidget {
   final orderNumber;
   final orderDate;
   final totalQuantity;
   final totalPrice;
-
+  final address;
+  final payMethod;
   OrdersModel(
-      this.orderNumber, this.orderDate, this.totalQuantity, this.totalPrice);
+      this.orderNumber, this.orderDate, this.totalQuantity, this.totalPrice, this.address, this.payMethod);
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +128,9 @@ class OrdersModel extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: getProportionateScreenWidth(24.0), right: getProportionateScreenWidth(24.0), top: getProportionateScreenHeight(10.0), bottom: getProportionateScreenHeight(10.0)),
 
-                      // onPressed: () {
-                      //   onClick(order.id);
-                      // },
+                      onPressed: () {
+                        Get.to(OrderDetails(orderNumber, orderDate, totalPrice, totalQuantity,address, payMethod), arguments: [orderNumber, orderDate, totalPrice, totalQuantity,address, payMethod]);
+                      },
                       shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(getProportionateScreenHeight(20.0)),

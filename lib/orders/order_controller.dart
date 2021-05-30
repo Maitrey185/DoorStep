@@ -27,6 +27,9 @@ class _AllOrdersState extends State<AllOrders> {
   var orderDate = "";
   var totalQuantity = "";
   var totalPrice = "";
+  var address = "";
+  var payMethod = "";
+
 
   Future<void> updateUI() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -46,9 +49,10 @@ class _AllOrdersState extends State<AllOrders> {
           orderDate = data['orders'][i]['dateOrdered'];
           totalQuantity = data['orders'][i]['cart'].length.toString();
           totalPrice = data['orders'][i]['cartTotal'].toString();
-
+          address = data['orders'][i]['deliveryAddress'];
+          payMethod = data['orders'][i]['paymentmethod'];
           ls.add(new OrdersModel(
-              orderNumber, orderDate, totalQuantity, totalPrice));
+              orderNumber, orderDate, totalQuantity, totalPrice, address, payMethod));
         }
       });
     } else {
