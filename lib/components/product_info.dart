@@ -3,6 +3,8 @@ import 'package:hive/hive.dart';
 import 'package:shape_cam/cart/cartItem.dart';
 import 'package:shape_cam/cart/cart_screen.dart';
 import 'package:shape_cam/cart/size_config.dart';
+import 'package:shape_cam/components/product_reviews.dart';
+import 'package:shape_cam/components/review_sheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../product/detailed_product.dart';
 import 'package:shape_cam/product/detailed_product.dart';
@@ -24,18 +26,59 @@ class ProductInfo extends StatefulWidget {
 class _ProductInfoState extends State<ProductInfo> {
   bool isProductInCart = false;
   int index = -1;
-
+  List<ProductReviews> ls = [];
+  List<Map> currReviews = [];
   var cartBox;
+  String id;
+  String token;
+  bool noReviews = true;
 
   @override
   void initState() {
     super.initState();
     getBox();
+    getReviews();
+  }
+
+  void getReviews() async {
+    ls.clear();
+    currReviews.clear();
+    int n = widget.product.reviews.length - 1;
+
+    if (n + 1 != 0) {
+      noReviews = false;
+    }
+    if (n > 2) {
+      n = 3;
+    }
+
+    for (int i = n; i >= 0; i--) {
+      setState(() {
+        ls.add(new ProductReviews(
+            userId: widget.product.reviews[i]['userId'],
+            userName: widget.product.reviews[i]['userName'],
+            rating:
+                double.parse(widget.product.reviews[i]['rating'].toString()),
+            review: widget.product.reviews[i]['review'],
+            date: widget.product.reviews[i]['date']));
+
+        currReviews.add({
+          'userId': widget.product.reviews[i]['userId'],
+          'userName': widget.product.reviews[i]['userName'],
+          'rating':
+              double.parse(widget.product.reviews[i]['rating'].toString()),
+          'review': widget.product.reviews[i]['review'],
+          'date': widget.product.reviews[i]['date']
+        });
+      });
+    }
   }
 
   Future<void> getBox() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var id = prefs.getString("id");
+    id = prefs.getString("id");
+    token = prefs.getString("token");
+
     setState(() {
       cartBox = Hive.box('cartBox$id');
       for (int i = 0; i < cartBox.length; i++) {
@@ -248,6 +291,85 @@ class _ProductInfoState extends State<ProductInfo> {
                 ),
               ),
             ],
+          ),
+        ),
+        SizedBox(
+          height: getProportionateScreenHeight(45.0),
+          child: Divider(
+            thickness: 1.0,
+            color: Color(0xFFFF7675),
+            indent: getProportionateScreenWidth(5.0),
+            endIndent: getProportionateScreenWidth(5.0),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(10.0),
+          ),
+          child: Text(
+            "Top Reviews",
+            style: TextStyle(
+                color: Color(0xFFFF7675),
+                fontSize: getProportionateScreenHeight(25.0),
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+        SizedBox(
+          height: getProportionateScreenHeight(15.0),
+        ),
+        noReviews
+            ? Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(10.0),
+                ),
+                child: Text(
+                  "No Reviews Yet",
+                  style: TextStyle(
+                      color: Color(0xFFFF7675),
+                      fontSize: getProportionateScreenHeight(15.0)),
+                ),
+              )
+            : SizedBox(height: 0.0),
+        Column(
+          children: ls,
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+              top: getProportionateScreenHeight(14.0),
+              bottom: getProportionateScreenHeight(14.0),
+              left: getProportionateScreenWidth(10.0)),
+          child: TextButton(
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18)),
+              backgroundColor: Color(0xFFFF7675),
+            ),
+            onPressed: () {
+              Scaffold.of(context).showBottomSheet(
+                (context) {
+                  return ReviewSheet(
+                    ls: currReviews,
+                    userName: widget.product.reviews[0]['userName'],
+                    userId: id,
+                    token: token,
+                    productId: widget.product.id,
+                  );
+                },
+                elevation: 20.0,
+              );
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenHeight(8.0),
+                  horizontal: getProportionateScreenWidth(8.0)),
+              child: Text(
+                "Write a Review",
+                style: TextStyle(
+                  fontSize: getProportionateScreenHeight(15.0),
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ),
         ),
       ],

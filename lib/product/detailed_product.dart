@@ -20,13 +20,14 @@ class DetailedProduct {
   @HiveField(7)
   final rating;
 
-  DetailedProduct(
-      {this.id,
-      this.description,
-      this.productImage,
-      this.model,
-      this.price,
-      this.reviews,
-      this.dimensions,
-      this.rating});
+  DetailedProduct({
+    this.id,
+    this.description,
+    this.productImage,
+    this.model,
+    this.price,
+    this.reviews,
+    this.dimensions,
+    this.rating,
+  });
 }

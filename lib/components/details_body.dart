@@ -16,29 +16,26 @@ class Body extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          SizedBox(
-            height: size.height,
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: size.height * 0.4),
-                  padding: EdgeInsets.only(
-                    top: size.height * 0.12,
-                    left: getProportionateScreenWidth(10.0),
-                    right: getProportionateScreenWidth(10.0),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(24),
-                      topRight: Radius.circular(24),
-                    ),
-                  ),
-                  child: ProductInfo(product: product),
+          Stack(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: size.height * 0.4),
+                padding: EdgeInsets.only(
+                  top: size.height * 0.12,
+                  left: getProportionateScreenWidth(10.0),
+                  right: getProportionateScreenWidth(10.0),
                 ),
-                ProductTitleWithImage(product: product)
-              ],
-            ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24),
+                  ),
+                ),
+                child: ProductInfo(product: product),
+              ),
+              ProductTitleWithImage(product: product)
+            ],
           )
         ],
       ),

@@ -46,7 +46,8 @@ class SingleProd extends StatelessWidget {
                     dimensions: data['dimensions'],
                     productImage: '$s1/$s2',
                     rating: data['avgRating'],
-                    description: '$d1 \n$d2 \n$d3'),
+                    description: '$d1 \n$d2 \n$d3',
+                    reviews: data['reviews']),
               ),
             ),
           );
@@ -56,7 +57,9 @@ class SingleProd extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.0)),
         height: getProportionateScreenHeight(200.0),
-        padding: EdgeInsets.only(top: getProportionateScreenHeight(3.0), bottom: getProportionateScreenHeight(3.0)),
+        padding: EdgeInsets.only(
+            top: getProportionateScreenHeight(3.0),
+            bottom: getProportionateScreenHeight(3.0)),
         child: GridTile(
           child: Hero(
             tag: 'prodImg$prodId',
