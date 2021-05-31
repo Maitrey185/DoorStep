@@ -23,8 +23,9 @@ class OrdersModel extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: Color(0xFFFFBBA3).withOpacity(0.8),
+                color: Colors.black.withOpacity(0.6),
                 blurRadius: getProportionateScreenHeight(8.0),
+                  offset: Offset(0.0, getProportionateScreenHeight(8.0))
               )
             ],
             borderRadius: BorderRadius.circular(getProportionateScreenHeight(8.0)),
@@ -43,20 +44,20 @@ class OrdersModel extends StatelessWidget {
                       TextSpan(
                         text: 'Order: ',
                         style: _theme.textTheme.display1.copyWith(
-                            color: Color(0xFFFF7675),
+                            color: Colors.black,
                             fontSize: getProportionateScreenHeight(20.0),
                             fontWeight: FontWeight.w700),
                       ),
                       TextSpan(
                         text: '#' + orderNumber.toString().substring(1,8),
                         style: _theme.textTheme.display1
-                            .copyWith(color: Color(0xFFFF7675),fontSize: getProportionateScreenHeight(20.0),
+                            .copyWith(color: Colors.black,fontSize: getProportionateScreenHeight(20.0),
                             fontWeight: FontWeight.w700),
                       ),
                     ])),
                     Text(orderDate.toString().substring(0,10),
                         style: _theme.textTheme.display3
-                            .copyWith(fontSize: getProportionateScreenHeight(20.0),color: Color(0xFFFFBBA3)))
+                            .copyWith(fontSize: getProportionateScreenHeight(20.0),color: Colors.grey))
                   ],
                 ),
                 SizedBox(
@@ -77,7 +78,7 @@ class OrdersModel extends StatelessWidget {
                             Text(
                               'Quantity: ',
                               style: _theme.textTheme.display1
-                                  .copyWith(fontSize: getProportionateScreenHeight(17.0),color: Color(0xFFFFBBA3)),
+                                  .copyWith(fontSize: getProportionateScreenHeight(17.0),color: Colors.grey),
                             ),
                             Padding(
                               padding: EdgeInsets.only(
@@ -85,7 +86,7 @@ class OrdersModel extends StatelessWidget {
                               child: Text(
                                 totalQuantity.toString(),
                                 style: _theme.textTheme.display1
-                                      .copyWith(color: Color(0xFFFF7675),fontSize: getProportionateScreenHeight(17.0))
+                                      .copyWith(color: Colors.grey,fontSize: getProportionateScreenHeight(17.0))
                               ),
                             ),
                           ],
@@ -98,15 +99,15 @@ class OrdersModel extends StatelessWidget {
                               Text(
                                 'Total Amount: ',
                                 style: _theme.textTheme.display1
-                                    .copyWith(fontSize: getProportionateScreenHeight(17.0),color: Color(0xFFFFBBA3)),
+                                    .copyWith(fontSize: getProportionateScreenHeight(17.0),color: Colors.grey),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: getProportionateScreenHeight(2.0)),
                                 child: Text(
-                                  '\$' + totalPrice.toString(),
+                                  '\₹' + totalPrice.toString(),
                                   //total amount
-                                  style: _theme.textTheme.display1.copyWith(color: Color(0xFFFF7675),
+                                  style: _theme.textTheme.display1.copyWith(color: Colors.black,
                                                                           fontSize: getProportionateScreenHeight(17.0))
                                 ),
                               ),
@@ -137,7 +138,7 @@ class OrdersModel extends StatelessWidget {
                           side: BorderSide(color: AppColors.black, width: getProportionateScreenWidth(2))),
                       child: Text(
                         'Details',
-                        style: _theme.textTheme.display1.copyWith(color: Color(0xFFFF7675),fontSize: getProportionateScreenHeight(20.0))
+                        style: _theme.textTheme.display1.copyWith(color: Colors.black,fontSize: getProportionateScreenHeight(20.0))
                       ),
                     ),
                     Text("delivered",

@@ -44,8 +44,9 @@ class _AllItemsState extends State<AllItems> {
       ls.clear();
       setState(() {
         for (int i = 0; i < data['cart'].length; i++) {
+          print("mmmmmmmm");
           name = data['cart'][i]['name'];
-          quantity = data['cart'][i]['quantity'];
+          quantity = data['cart'][i]['quantity'].toString();
           price = data['cart'][i]['price'].toString();
           image = data['cart'][i]['productImage'];
           ls.add(new ItemModel(

@@ -28,7 +28,7 @@ class ItemModel extends StatelessWidget {
                     BorderRadius.circular(getProportionateScreenHeight(8.0)),
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
+                      color: Colors.grey.withOpacity(0.7),
                       blurRadius: getProportionateScreenHeight(8.0),
                       offset: Offset(0.0, getProportionateScreenHeight(8.0)))
                 ],
@@ -41,14 +41,14 @@ class ItemModel extends StatelessWidget {
                     child: Image.network(
                       FlutterConfig.get('SERVER_URL') + image,
                       fit: BoxFit.cover,
-                      height: 100,
-                      width: 100,
+                      height: getProportionateScreenHeight(100),
+                      width: getProportionateScreenWidth(100),
                     ),
                   ),
                   Container(
                       padding: EdgeInsets.only(
                           left: getProportionateScreenWidth(15.0)),
-                      width: getProportionateScreenWidth(150),
+                      width: getProportionateScreenWidth(200),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -72,29 +72,32 @@ class ItemModel extends StatelessWidget {
                                     bottom:
                                         getProportionateScreenHeight(4) * 2)),
                             Row(children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                    alignment: Alignment.centerLeft,
+                                    
+                                    child: Row(children: <Widget>[
+                                      Text('Units: ',
+                                          style: _theme.textTheme.body1.copyWith(
+                                              fontSize:
+                                                  getProportionateScreenHeight(
+                                                      20.0))),
+                                      Text(quantity.toString(),
+                                          style: _theme.textTheme.body1.copyWith(
+                                              fontSize:
+                                                  getProportionateScreenHeight(
+                                                      20.0),
+                                              color: Colors.black)),
+                                    ])),
+                              ),
                               Container(
-                                  alignment: Alignment.center,
-                                  width: getProportionateScreenWidth(80.0),
-                                  child: Row(children: <Widget>[
-                                    Text('Units: ',
-                                        style: _theme.textTheme.body1.copyWith(
-                                            fontSize:
-                                                getProportionateScreenHeight(
-                                                    20.0))),
-                                    Text(quantity.toString(),
-                                        style: _theme.textTheme.body1.copyWith(
-                                            fontSize:
-                                                getProportionateScreenHeight(
-                                                    20.0),
-                                            color: Colors.black)),
-                                  ])),
-                              Container(
-                                width: getProportionateScreenWidth(50.0),
+                                
                                 alignment: Alignment.centerRight,
-                                child: Text('\$' + (price).toString(),
+                                child: Text('\₹' + (price).toString(),
+                                    textAlign: TextAlign.right,
                                     style: _theme.textTheme.display1.copyWith(
-                                        fontSize: getProportionateScreenHeight(
-                                            20.0))),
+                                        fontSize: getProportionateScreenWidth(
+                                            18.0))),
                               )
                             ])
                           ]))

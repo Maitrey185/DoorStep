@@ -40,13 +40,13 @@ class _OrderDetailsState extends State<OrderDetails> {
                       TextSpan(
                         text: 'Order: ',
 
-                        style: _theme.textTheme.display1.copyWith(fontSize: getProportionateScreenHeight(20.0))
+                        style: _theme.textTheme.display1.copyWith(color: Colors.black,fontSize: getProportionateScreenHeight(20.0),fontWeight: FontWeight.w700)
                       ),
                       TextSpan(
                         text:
                         '#' + widget.orderNumber.toString().substring(0,8),
                         style: _theme.textTheme.display1
-                            .copyWith(fontSize: getProportionateScreenHeight(20.0),fontWeight: FontWeight.w700),
+                            .copyWith(color: Colors.black,fontSize: getProportionateScreenHeight(20.0),fontWeight: FontWeight.w700),
                       ),
                     ])),
                 Text(
@@ -186,24 +186,25 @@ class _OrderDetailsState extends State<OrderDetails> {
   }
 }
 
-Row buildSummaryLine(
+Column buildSummaryLine(
     String label, String text, ThemeData _theme, double width) {
   print(label + ' ' + text);
-  return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          label,
-          style: _theme.textTheme.display1
-              .copyWith(fontSize: getProportionateScreenHeight(20.0),color: Colors.grey),
-        ),
-        Container(
-          width: getProportionateScreenWidth(150.0),
-          child: Text(
+  return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            label,
+            style: _theme.textTheme.display1
+                .copyWith(fontSize: getProportionateScreenHeight(20.0),color: Colors.grey),
+          ),
+          SizedBox(
+            height: getProportionateScreenHeight(5.0),
+          ),
+          Text(
             text,
             style: _theme.textTheme.display1.copyWith(fontSize: getProportionateScreenHeight(20.0),color: Colors.black)
-          ),
-        )
-      ]);
+          )
+        ],
+  );
   }
