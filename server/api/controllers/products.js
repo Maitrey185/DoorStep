@@ -5,9 +5,6 @@ const fs = require('fs');
 exports.getAllProducts = (req, res, next) => {
 	Product
 		.find()
-		// .select('_id name price')
-		// .limit(2)
-		// .skip(req.params.skip)
 		.exec()
 		.then(products => {
 			const response = {
@@ -27,7 +24,8 @@ exports.getAllProducts = (req, res, next) => {
 						gender: product.gender,
 						sold: product.sold,
 						avgRating: product.avgRating,
-						reviews: product.reviews
+						reviews: product.reviews,
+						category: product.category
 					}
 				})
 			};
@@ -60,7 +58,8 @@ exports.createOneProduct = (req, res, next) => {
 					gender: product.gender,
 					sold: product.sold,
 					avgRating: product.avgRating,
-					reviews: product.reviews
+					reviews: product.reviews,
+					category: product.category
 				}
 			});
 		})
@@ -74,7 +73,28 @@ exports.getOneProduct = (req, res, next) => {
 	const id = req.params.productId;
 	Product
 		.findById(id)
-		.select('_id price model productImage colour shape materialType stock_left date dimensions gender sold avgRating reviews')
+		.select('_id price model category productImage colour shape materialType stock_left date dimensions gender sold avgRating reviews')
+		.exec()
+		.then(product => {
+			if (product) {
+				res.status(200).json(product);
+			}
+			else {
+				res.status(404).json({
+					message: 'Product Not Found!'
+				});
+			}
+		})
+		.catch(error => {
+			next(error);
+		});
+};
+
+exports.getCategoryProduct = (req, res, next) => {
+	const category = req.params.categoryType;
+	Product
+		.find({category: category})
+		.select('_id price model category productImage colour shape materialType stock_left date dimensions gender sold avgRating reviews')
 		.exec()
 		.then(product => {
 			if (product) {
@@ -93,10 +113,7 @@ exports.getOneProduct = (req, res, next) => {
 
 exports.updateOneProduct = (req, res, next) => {
 	const productId = req.params.productId;
-	// const updateOps = {};
-	// for (const prop of req.body) {
-	// 	updateOps[prop.propName] = prop.propValue;
-	// }
+
 	Product
 		.update({ _id: productId }, { $set: req.body })
 		.exec()
@@ -147,6 +164,7 @@ function createProduct(req) {
 		stock_left: req.body.stock_left,
 		sold: req.body.sold,
 		avgRating: req.body.avgRating,
-		reviews: req.body.reviews
+		reviews: req.body.reviews,
+		category: req.body.category
 	});
 }

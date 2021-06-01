@@ -16,7 +16,8 @@ const productSchema = mongoose.Schema({
     sold: {type: Number, default: 0 },
     avgRating: {type: Number, default: 0 },
     reviews: {type: Array},
-    date: {type: String, default: date}
+    date: {type: String, default: date},
+    category: { type: String, required: true },
 
 });
 

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'theme.dart';
-import 'package:get/get.dart';
 import 'package:shape_cam/cart/size_config.dart';
-import 'order_details.dart';
 import 'package:flutter_config/flutter_config.dart';
 
 class ItemModel extends StatelessWidget {
@@ -17,7 +14,6 @@ class ItemModel extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     var _theme = Theme.of(context);
-    var width = MediaQuery.of(context).size.width;
     return Padding(
         padding: EdgeInsets.only(bottom: getProportionateScreenHeight(15.0)),
         child: Container(
@@ -32,7 +28,7 @@ class ItemModel extends StatelessWidget {
                       blurRadius: getProportionateScreenHeight(8.0),
                       offset: Offset(0.0, getProportionateScreenHeight(8.0)))
                 ],
-                color: AppColors.white),
+                color: Colors.white),
             child: Stack(children: <Widget>[
               Row(
                 children: <Widget>[
@@ -75,7 +71,6 @@ class ItemModel extends StatelessWidget {
                               Expanded(
                                 child: Container(
                                     alignment: Alignment.centerLeft,
-                                    
                                     child: Row(children: <Widget>[
                                       Text('Units: ',
                                           style: _theme.textTheme.body1.copyWith(
@@ -91,13 +86,12 @@ class ItemModel extends StatelessWidget {
                                     ])),
                               ),
                               Container(
-                                
                                 alignment: Alignment.centerRight,
-                                child: Text('\₹' + (price).toString(),
+                                child: Text('₹' + (price).toString(),
                                     textAlign: TextAlign.right,
                                     style: _theme.textTheme.display1.copyWith(
-                                        fontSize: getProportionateScreenWidth(
-                                            18.0))),
+                                        fontSize:
+                                            getProportionateScreenWidth(18.0))),
                               )
                             ])
                           ]))

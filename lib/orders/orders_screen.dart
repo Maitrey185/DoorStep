@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../cart/size_config.dart';
 import 'order_controller.dart';
 import 'package:shape_cam/cart/size_config.dart';
+
 class OrdersScreen extends StatefulWidget {
   @override
   _OrdersScreenState createState() => _OrdersScreenState();
@@ -15,14 +16,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
       backgroundColor: Colors.white,
       appBar: buildAppBar(context),
       body: Padding(
-        padding:
-            EdgeInsets.symmetric(vertical: getProportionateScreenHeight(20.0), horizontal: getProportionateScreenWidth(20)),
-        child: Column(
-          children: [
-            Container(
-              child: AllOrders(),
-            ),
-          ],
+        padding: EdgeInsets.symmetric(
+            vertical: getProportionateScreenHeight(20.0),
+            horizontal: getProportionateScreenWidth(20)),
+        child: SingleChildScrollView(
+          child: AllOrders(),
         ),
       ),
     );

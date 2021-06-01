@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../cart/size_config.dart';
-import 'order_controller.dart';
 import 'package:shape_cam/cart/size_config.dart';
-import 'theme.dart';
 import 'single_order_controller.dart';
 
 class OrderDetails extends StatefulWidget {
@@ -12,8 +10,9 @@ class OrderDetails extends StatefulWidget {
   final totalPrice;
   final address;
   final payMethod;
-  OrderDetails(
-      this.orderNumber, this.orderDate,  this.totalPrice, this.totalQuantity, this.address, this.payMethod);
+
+  OrderDetails(this.orderNumber, this.orderDate, this.totalPrice,
+      this.totalQuantity, this.address, this.payMethod);
   @override
   _OrderDetailsState createState() => _OrderDetailsState();
 }
@@ -23,58 +22,70 @@ class _OrderDetailsState extends State<OrderDetails> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     var width = MediaQuery.of(context).size.width;
-    var _theme = Theme.of(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildAppBar(context),
       body: Padding(
-        padding:
-        EdgeInsets.symmetric(vertical: getProportionateScreenHeight(20.0), horizontal: getProportionateScreenWidth(20)),
-        child: Column(
+        padding: EdgeInsets.symmetric(
+            vertical: getProportionateScreenHeight(20.0),
+            horizontal: getProportionateScreenWidth(20)),
+        child: ListView(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 RichText(
-                    text: TextSpan(children: <TextSpan>[
-                      TextSpan(
+                  text: TextSpan(children: <TextSpan>[
+                    TextSpan(
                         text: 'Order: ',
-
-                        style: _theme.textTheme.display1.copyWith(color: Colors.black,fontSize: getProportionateScreenHeight(20.0),fontWeight: FontWeight.w700)
-                      ),
-                      TextSpan(
-                        text:
-                        '#' + widget.orderNumber.toString().substring(0,8),
-                        style: _theme.textTheme.display1
-                            .copyWith(color: Colors.black,fontSize: getProportionateScreenHeight(20.0),fontWeight: FontWeight.w700),
-                      ),
-                    ])),
-                Text(
-                    widget.orderDate.toString().substring(0,10),
-                    style: _theme.textTheme.display3
-                        .copyWith(fontSize: getProportionateScreenHeight(20.0),color: Colors.grey))
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: getProportionateScreenHeight(20.0),
+                            fontWeight: FontWeight.w700)),
+                    TextSpan(
+                      text: '#' + widget.orderNumber.toString().substring(0, 8),
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: getProportionateScreenHeight(20.0),
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ]),
+                ),
+                Text(widget.orderDate.toString().substring(0, 10),
+                    style: TextStyle(
+                        fontSize: getProportionateScreenHeight(20.0),
+                        color: Colors.grey))
               ],
             ),
-
             SizedBox(
-              height: AppSizes.sidePadding,
+              height: getProportionateScreenHeight(15.0),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Text(
-                      widget.totalQuantity.toString(),
-                      style: _theme.textTheme.display1.copyWith(fontSize: getProportionateScreenHeight(20.0),fontWeight: FontWeight.w700)
-                    ),
+                    Text(widget.totalQuantity.toString(),
+                        style: TextStyle(
+                            fontSize: getProportionateScreenHeight(20.0),
+                            fontWeight: FontWeight.w700)),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: AppSizes.linePadding),
-                      child: Text(
-                        'items',
-                        style: _theme.textTheme.display1.copyWith(fontSize: getProportionateScreenHeight(20.0),fontWeight: FontWeight.w700),
-                      ),
+                      padding: EdgeInsets.only(
+                          left: getProportionateScreenWidth(4.0)),
+                      child: widget.totalQuantity.toString() == '1'
+                          ? Text(
+                              'Item',
+                              style: TextStyle(
+                                  fontSize: getProportionateScreenHeight(20.0),
+                                  fontWeight: FontWeight.w700),
+                            )
+                          : Text(
+                              'Items',
+                              style: TextStyle(
+                                  fontSize: getProportionateScreenHeight(20.0),
+                                  fontWeight: FontWeight.w700),
+                            ),
                     ),
                   ],
                 ),
@@ -90,76 +101,34 @@ class _OrderDetailsState extends State<OrderDetails> {
               height: getProportionateScreenHeight(30.0),
             ),
             buildSummaryLine(
-                'Shipping Address:',
-                widget.address.toString(),
-                _theme,
-                width),
+                'Shipping Address:', widget.address.toString(), width),
             SizedBox(
               height: getProportionateScreenHeight(25.0),
             ),
-            buildSummaryLine('Payment Methods:',
-                widget.payMethod, _theme, width),
+            buildSummaryLine('Payment Methods:', widget.payMethod, width),
             SizedBox(
               height: getProportionateScreenHeight(25.0),
             ),
             buildSummaryLine(
-                'Total Amount:',
-                '\$' + widget.totalPrice.toString(),
-                _theme,
-                width),
+                'Total Amount:', '₹' + widget.totalPrice.toString(), width),
             SizedBox(
-              height: getProportionateScreenHeight(25.0),
+              height: getProportionateScreenHeight(40.0),
             ),
-            Expanded(
-
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-
-                Expanded(
-                  child: RaisedButton(
-                    
-                    disabledColor: Colors.white,
-                    padding: EdgeInsets.only(
-                        left: getProportionateScreenWidth(24.0), right: getProportionateScreenWidth(24.0), top: getProportionateScreenHeight(10.0), bottom: getProportionateScreenHeight(10.0)),
-
-                    // onPressed: () {
-                    //   Get.to(OrderDetails(orderNumber, orderDate, totalPrice, totalQuantity,address, payMethod), arguments: [orderNumber, orderDate, totalPrice, totalQuantity,address, payMethod]);
-                    // },
-                    shape: RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.circular(getProportionateScreenHeight(20.0)),
-                        side: BorderSide(color: Colors.black, width: getProportionateScreenWidth(2))),
-                    child: Text(
-                        'Reorder',
-                        style: _theme.textTheme.display1.copyWith(color: Colors.black,fontSize: getProportionateScreenHeight(20.0))
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: getProportionateScreenWidth(15.0)),
-                ),
-                
-                Expanded(
-                  child: RaisedButton(
-                    disabledColor: Colors.white,
-                    padding: EdgeInsets.only(
-                        left: getProportionateScreenWidth(24.0), right: getProportionateScreenWidth(24.0), top: getProportionateScreenHeight(10.0), bottom: getProportionateScreenHeight(10.0)),
-
-                    // onPressed: () {
-                    //   Get.to(OrderDetails(orderNumber, orderDate, totalPrice, totalQuantity,address, payMethod), arguments: [orderNumber, orderDate, totalPrice, totalQuantity,address, payMethod]);
-                    // },
-                    shape: RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.circular(getProportionateScreenHeight(20.0)),
-                        side: BorderSide(color: Colors.black, width: getProportionateScreenWidth(2))),
-                    child: Text(
-                        'Feedback',
-                        style: _theme.textTheme.display1.copyWith(color: Colors.black,fontSize: getProportionateScreenHeight(20.0))
-                    ),
-                  ),
-                ),
-              ]),
+            RaisedButton(
+              disabledColor: Color(0xFFFF7675),
+              padding: EdgeInsets.only(
+                  left: getProportionateScreenWidth(24.0),
+                  right: getProportionateScreenWidth(24.0),
+                  top: getProportionateScreenHeight(10.0),
+                  bottom: getProportionateScreenHeight(10.0)),
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.circular(getProportionateScreenHeight(20.0)),
+              ),
+              child: Text('Feedback',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: getProportionateScreenHeight(20.0))),
             )
           ],
         ),
@@ -186,25 +155,23 @@ class _OrderDetailsState extends State<OrderDetails> {
   }
 }
 
-Column buildSummaryLine(
-    String label, String text, ThemeData _theme, double width) {
-  print(label + ' ' + text);
+Column buildSummaryLine(String label, String text, double width) {
   return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            label,
-            style: _theme.textTheme.display1
-                .copyWith(fontSize: getProportionateScreenHeight(20.0),color: Colors.grey),
-          ),
-          SizedBox(
-            height: getProportionateScreenHeight(5.0),
-          ),
-          Text(
-            text,
-            style: _theme.textTheme.display1.copyWith(fontSize: getProportionateScreenHeight(20.0),color: Colors.black)
-          )
-        ],
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: <Widget>[
+      Text(
+        label,
+        style: TextStyle(
+            fontSize: getProportionateScreenHeight(20.0), color: Colors.grey),
+      ),
+      SizedBox(
+        height: getProportionateScreenHeight(5.0),
+      ),
+      Text(text,
+          style: TextStyle(
+              fontSize: getProportionateScreenHeight(20.0),
+              color: Colors.black))
+    ],
   );
-  }
+}

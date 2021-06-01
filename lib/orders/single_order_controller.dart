@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_config/flutter_config.dart';
 import 'single_order_model.dart';
+
 class AllItems extends StatefulWidget {
   var id;
   AllItems(this.id);
@@ -14,7 +15,6 @@ class AllItems extends StatefulWidget {
 }
 
 class _AllItemsState extends State<AllItems> {
-
   var token;
 
   @override
@@ -29,8 +29,6 @@ class _AllItemsState extends State<AllItems> {
   var price = "";
   var image = "";
 
-
-
   Future<void> updateUI() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     token = prefs.getString("token");
@@ -44,13 +42,11 @@ class _AllItemsState extends State<AllItems> {
       ls.clear();
       setState(() {
         for (int i = 0; i < data['cart'].length; i++) {
-          print("mmmmmmmm");
           name = data['cart'][i]['name'];
           quantity = data['cart'][i]['quantity'].toString();
           price = data['cart'][i]['price'].toString();
           image = data['cart'][i]['productImage'];
-          ls.add(new ItemModel(
-              name, quantity, price, image));
+          ls.add(new ItemModel(name, quantity, price, image));
         }
       });
     } else {

@@ -30,7 +30,6 @@ class _AllOrdersState extends State<AllOrders> {
   var address = "";
   var payMethod = "";
 
-
   Future<void> updateUI() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     id = prefs.getString("id");
@@ -44,15 +43,15 @@ class _AllOrdersState extends State<AllOrders> {
       var data = jsonDecode(response.body);
       ls.clear();
       setState(() {
-        for (int i = 0; i < data['count']; i++) {
+        for (int i = data['count'] - 1; i >= 0; i--) {
           orderNumber = data['orders'][i]['_id'];
           orderDate = data['orders'][i]['dateOrdered'];
           totalQuantity = data['orders'][i]['cart'].length.toString();
           totalPrice = data['orders'][i]['cartTotal'].toString();
           address = data['orders'][i]['deliveryAddress'];
           payMethod = data['orders'][i]['paymentmethod'];
-          ls.add(new OrdersModel(
-              orderNumber, orderDate, totalQuantity, totalPrice, address, payMethod));
+          ls.add(new OrdersModel(orderNumber, orderDate, totalQuantity,
+              totalPrice, address, payMethod));
         }
       });
     } else {
@@ -62,8 +61,10 @@ class _AllOrdersState extends State<AllOrders> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: ls,
+    return SingleChildScrollView(
+      child: Column(
+        children: ls,
+      ),
     );
   }
 }

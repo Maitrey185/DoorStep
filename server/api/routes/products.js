@@ -38,6 +38,8 @@ router.post('/', checkAuth, upload.single('productImage'), ProductsController.cr
 
 router.get('/:productId', ProductsController.getOneProduct);
 
+router.get('/category/:categoryType', ProductsController.getCategoryProduct);
+
 router.patch('/:productId', checkAuth,  ProductsController.updateOneProduct);
 
 router.delete('/:productId', checkAuth, ProductsController.deleteOneProduct);
