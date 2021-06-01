@@ -21,7 +21,7 @@ class Body extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(top: size.height * 0.4),
                 padding: EdgeInsets.only(
-                  top: size.height * 0.12,
+                  top: size.height * 0.18,
                   left: getProportionateScreenWidth(10.0),
                   right: getProportionateScreenWidth(10.0),
                 ),

@@ -102,42 +102,57 @@ class _ProductInfoState extends State<ProductInfo> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //crossAxisAlignment: CrossAxisAlignment.start,
+
           children: <Widget>[
+
             Column(
               children: [
-                Text("Color"),
-                ColorDot(
-                  color: Color(0xFF356C95),
-                  isSelected: true,
+                RichText(
+
+                  text: TextSpan(
+                    style: TextStyle(color: Color(0xFF535353)),
+                    children: [
+                      TextSpan(text: "Price\n"),
+                      TextSpan(
+                        text: "₹${widget.product.price}",
+                        style: Theme.of(context).textTheme.headline5.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: getProportionateScreenHeight(30.0)),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
-            RichText(
-              text: TextSpan(
-                style: TextStyle(color: Color(0xFF535353)),
-                children: [
-                  TextSpan(text: "Dimensions\n"),
-                  TextSpan(
-                    text: "${widget.product.dimensions}",
-                    style: Theme.of(context).textTheme.headline5.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: getProportionateScreenHeight(30.0)),
-                  )
-                ],
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(6.0)),
+                  child: RaisedButton(
+
+                    color: Colors.black,
+                    padding: EdgeInsets.only(
+                        left: getProportionateScreenWidth(24.0),
+                        right: getProportionateScreenWidth(24.0),
+                        top: getProportionateScreenHeight(10.0),
+                        bottom: getProportionateScreenHeight(10.0)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(getProportionateScreenHeight(20.0)),
+                    ),
+                    child: Text('Watch in 3d',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: getProportionateScreenHeight(20.0))),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
         SizedBox(height: getProportionateScreenHeight(5.0)),
-        Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: getProportionateScreenHeight(10.0)),
-          child: Text(
-            widget.product.description,
-            style: TextStyle(height: getProportionateScreenHeight(1.5)),
-          ),
-        ),
+
         SizedBox(height: getProportionateScreenHeight(5.0)),
         Row(
           children: <Widget>[
