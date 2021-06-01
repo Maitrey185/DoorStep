@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../cart/size_config.dart';
 import 'package:shape_cam/cart/size_config.dart';
 import 'single_order_controller.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'utils.dart';
 class OrderDetails extends StatefulWidget {
   final orderNumber;
   final orderDate;
@@ -114,21 +115,55 @@ class _OrderDetailsState extends State<OrderDetails> {
             SizedBox(
               height: getProportionateScreenHeight(40.0),
             ),
-            RaisedButton(
-              disabledColor: Color(0xFFFF7675),
-              padding: EdgeInsets.only(
-                  left: getProportionateScreenWidth(24.0),
-                  right: getProportionateScreenWidth(24.0),
-                  top: getProportionateScreenHeight(10.0),
-                  bottom: getProportionateScreenHeight(10.0)),
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(getProportionateScreenHeight(20.0)),
-              ),
-              child: Text('Feedback',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: getProportionateScreenHeight(20.0))),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(6.0)),
+                  child: RaisedButton(
+                    onPressed: () => Utils.openEmail(
+                      toEmail: 'maitreypatil185@gmail.com',
+                      subject: 'Feedback',
+                      body: '',
+                    ),
+                    color: Colors.black,
+                    padding: EdgeInsets.only(
+                        left: getProportionateScreenWidth(24.0),
+                        right: getProportionateScreenWidth(24.0),
+                        top: getProportionateScreenHeight(10.0),
+                        bottom: getProportionateScreenHeight(10.0)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(getProportionateScreenHeight(20.0)),
+                    ),
+                    child: Text('Feedback',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: getProportionateScreenHeight(20.0))),
+                  ),
+                ),
+
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(6.0)),
+                  child: RaisedButton(
+                    onPressed: () => Utils.openPhoneCall(phoneNumber: '+919359187909'),
+                    color: Colors.black,
+                    padding: EdgeInsets.only(
+                        left: getProportionateScreenWidth(24.0),
+                        right: getProportionateScreenWidth(24.0),
+                        top: getProportionateScreenHeight(10.0),
+                        bottom: getProportionateScreenHeight(10.0)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(getProportionateScreenHeight(20.0)),
+                    ),
+                    child: Text('Contact Us',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: getProportionateScreenHeight(20.0))),
+                  ),
+                ),
+              ],
             )
           ],
         ),

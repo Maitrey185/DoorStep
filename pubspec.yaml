@@ -21,7 +21,7 @@ dependencies:
   intl: ^0.17.0
   shared_preferences: ^0.5.12+4
   path_provider: ^1.6.28
-
+  url_launcher: ^6.0.4
 
 dev_dependencies:
   flutter_test:
