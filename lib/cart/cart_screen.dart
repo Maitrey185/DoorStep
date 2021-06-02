@@ -95,11 +95,10 @@ class _CartScreenState extends State<CartScreen> {
                             key: Key(uuid.v1().toString()),
                             direction: DismissDirection.endToStart,
                             onDismissed: (direction) {
-                              final cartItem = cartBox.getAt(index) as CartItem;
                               setState(() {
                                 total = total - cartItem.product.price;
                                 cartBox.deleteAt(index);
-                                getBox();
+                                //getBox();
                               });
                             },
                             background: Container(

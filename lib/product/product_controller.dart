@@ -5,6 +5,9 @@ import 'package:shape_cam/product/products.dart';
 import 'package:flutter_config/flutter_config.dart';
 
 class AllProducts extends StatefulWidget {
+  AllProducts({this.category});
+  final String category;
+
   @override
   _AllProductsState createState() => _AllProductsState();
 }
@@ -27,30 +30,26 @@ class _AllProductsState extends State<AllProducts> {
   }
 
   Future<void> updateUI() async {
-    http.Response response =
-        await http.get("${FlutterConfig.get('SERVER_URL')}products");
+    http.Response response = await http.get(
+        "${FlutterConfig.get('SERVER_URL')}products/category/${widget.category}");
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       setState(() {
         ls.clear();
-        for (int i = 0; i < data['count']; i = i + 2) {
-          id1 = data['products'][i]['_id'];
-          name1 = data['products'][i]['model'];
-          price1 = data['products'][i]['price'].toString();
-          String s1 =
-              data['products'][i]['productImage'].toString().split('\\')[0];
-          String s2 =
-              data['products'][i]['productImage'].toString().split('\\')[1];
+        for (int i = 0; i < data.length; i = i + 2) {
+          id1 = data[i]['_id'];
+          name1 = data[i]['model'];
+          price1 = data[i]['price'].toString();
+          String s1 = data[i]['productImage'].toString().split('\\')[0];
+          String s2 = data[i]['productImage'].toString().split('\\')[1];
           picture1 = '$s1/$s2';
 
-          id2 = data['products'][i + 1]['_id'];
-          name2 = data['products'][i + 1]['model'];
-          price2 = data['products'][i + 1]['price'].toString();
-          String s3 =
-              data['products'][i + 1]['productImage'].toString().split('\\')[0];
-          String s4 =
-              data['products'][i + 1]['productImage'].toString().split('\\')[1];
+          id2 = data[i + 1]['_id'];
+          name2 = data[i + 1]['model'];
+          price2 = data[i + 1]['price'].toString();
+          String s3 = data[i + 1]['productImage'].toString().split('\\')[0];
+          String s4 = data[i + 1]['productImage'].toString().split('\\')[1];
           picture2 = '$s3/$s4';
 
           ls.add(new Products(

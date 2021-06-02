@@ -19,9 +19,10 @@ dependencies:
   flutter_svg: ^0.22.0
   uuid: ^2.2.2
   intl: ^0.17.0
-  shared_preferences: ^0.5.12+4
   path_provider: ^1.6.28
   url_launcher: ^6.0.4
+  shared_preferences: ^0.5.12+4
+  flutter_cube: ^0.1.1
 
 dev_dependencies:
   flutter_test:
@@ -45,5 +46,54 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/
+    - assets/images/
+    - assets/60b70aa673aeaa33146f0de8/
+    - assets/60b70ae373aeaa33146f0de9/
+    - assets/60b70b0573aeaa33146f0dea/
+    - assets/60b70b3d73aeaa33146f0deb/
+    - assets/60b70b5273aeaa33146f0dec/
+    - assets/60b70bbd73aeaa33146f0ded/
+    - assets/60b70bf773aeaa33146f0dee/
+    - assets/60b70c2373aeaa33146f0def/
+    - assets/60b70cd673aeaa33146f0df1/
+    - assets/60b70ced73aeaa33146f0df2/
+    - assets/60b70d1173aeaa33146f0df3/
+    - assets/60b70d4473aeaa33146f0df4/
+    - assets/60b70d9873aeaa33146f0df5/
+    - assets/60b70dc173aeaa33146f0df6/
+    - assets/60b70df373aeaa33146f0df7/
+    - assets/60b70e2473aeaa33146f0df8/
+    - assets/60b70e8c73aeaa33146f0df9/
+    - assets/60b70eaa73aeaa33146f0dfa/
+    - assets/60b70ec073aeaa33146f0dfb/
+    - assets/60b70ee573aeaa33146f0dfc/
+    - assets/60b70efc73aeaa33146f0dfd/
+    - assets/60b70f1673aeaa33146f0dfe/
+    - assets/60b70f3273aeaa33146f0dff/
+    - assets/60b70f4c73aeaa33146f0e00/
+    - assets/60b70fae73aeaa33146f0e01/
+    - assets/60b70fd473aeaa33146f0e02/
+    - assets/60b70ff173aeaa33146f0e03/
+    - assets/60b7102873aeaa33146f0e04/
+    - assets/60b7105173aeaa33146f0e05/
+    - assets/60b7107473aeaa33146f0e06/
+    - assets/60b7109673aeaa33146f0e07/
+    - assets/60b710ba73aeaa33146f0e08/
+    - assets/60b710f773aeaa33146f0e09/
+    - assets/60b7111e73aeaa33146f0e0a/
+    - assets/60b7113773aeaa33146f0e0b/
+    - assets/60b7115d73aeaa33146f0e0c/
+    - assets/60b7117773aeaa33146f0e0d/
+    - assets/60b7119173aeaa33146f0e0e/
+    - assets/60b711ba73aeaa33146f0e0f/
+    - assets/60b711ed73aeaa33146f0e10/
+    - assets/60b7122a73aeaa33146f0e11/
+    - assets/60b7124273aeaa33146f0e12/
+    - assets/60b7126673aeaa33146f0e13/
+    - assets/60b7127f73aeaa33146f0e14/
+    - assets/60b712ae73aeaa33146f0e15/
+    - assets/60b712d373aeaa33146f0e16/
+    - assets/60b712ef73aeaa33146f0e17/
+    - assets/60b7131173aeaa33146f0e18/
+
 

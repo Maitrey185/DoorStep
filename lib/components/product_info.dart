@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:shape_cam/cart/cartItem.dart';
@@ -5,11 +7,14 @@ import 'package:shape_cam/cart/cart_screen.dart';
 import 'package:shape_cam/cart/size_config.dart';
 import 'package:shape_cam/components/product_reviews.dart';
 import 'package:shape_cam/components/review_sheet.dart';
+import 'package:shape_cam/three_D_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../product/detailed_product.dart';
 import 'package:shape_cam/product/detailed_product.dart';
 import 'package:rating_bar/rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:flutter_config/flutter_config.dart';
+import 'package:http/http.dart' as http;
 
 class ProductInfo extends StatefulWidget {
   const ProductInfo({
@@ -32,6 +37,7 @@ class _ProductInfoState extends State<ProductInfo> {
   String id;
   String token;
   bool noReviews = true;
+  String name = "";
 
   @override
   void initState() {
@@ -78,6 +84,17 @@ class _ProductInfoState extends State<ProductInfo> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     id = prefs.getString("id");
     token = prefs.getString("token");
+    http.Response response =
+        await http.get(FlutterConfig.get('SERVER_URL') + 'user/$id', headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      name = data['user']['name'];
+    }
 
     setState(() {
       cartBox = Hive.box('cartBox$id');
@@ -102,57 +119,54 @@ class _ProductInfoState extends State<ProductInfo> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
           children: <Widget>[
-
-            Column(
-              children: [
-                RichText(
-
-                  text: TextSpan(
-                    style: TextStyle(color: Color(0xFF535353)),
-                    children: [
-                      TextSpan(text: "Price\n"),
-                      TextSpan(
-                        text: "₹${widget.product.price}",
-                        style: Theme.of(context).textTheme.headline5.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: getProportionateScreenHeight(30.0)),
-                      )
-                    ],
-                  ),
-                ),
-              ],
+            RichText(
+              text: TextSpan(
+                style: TextStyle(color: Color(0xFF535353)),
+                children: [
+                  TextSpan(text: "Price\n"),
+                  TextSpan(
+                    text: "₹${widget.product.price}",
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: getProportionateScreenHeight(30.0)),
+                  )
+                ],
+              ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(6.0)),
-                  child: RaisedButton(
-
-                    color: Colors.black,
-                    padding: EdgeInsets.only(
-                        left: getProportionateScreenWidth(24.0),
-                        right: getProportionateScreenWidth(24.0),
-                        top: getProportionateScreenHeight(10.0),
-                        bottom: getProportionateScreenHeight(10.0)),
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                      BorderRadius.circular(getProportionateScreenHeight(20.0)),
-                    ),
-                    child: Text('Watch in 3d',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: getProportionateScreenHeight(20.0))),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(6.0)),
+              child: TextButton(
+                onPressed: () {
+                  Get.to(
+                    ThreeDScreen(
+                        id: widget.product.id, name: widget.product.model),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: Color(0xFFFF7675),
+                  padding: EdgeInsets.only(
+                      left: getProportionateScreenWidth(24.0),
+                      right: getProportionateScreenWidth(24.0),
+                      top: getProportionateScreenHeight(10.0),
+                      bottom: getProportionateScreenHeight(10.0)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                        getProportionateScreenHeight(20.0)),
                   ),
                 ),
-              ],
+                child: Text(
+                  'Explore in 3D',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: getProportionateScreenHeight(20.0)),
+                ),
+              ),
             ),
           ],
         ),
         SizedBox(height: getProportionateScreenHeight(5.0)),
-
         SizedBox(height: getProportionateScreenHeight(5.0)),
         Row(
           children: <Widget>[
@@ -364,7 +378,7 @@ class _ProductInfoState extends State<ProductInfo> {
                 (context) {
                   return ReviewSheet(
                     ls: currReviews,
-                    userName: widget.product.reviews[0]['userName'],
+                    userName: name,
                     userId: id,
                     token: token,
                     productId: widget.product.id,

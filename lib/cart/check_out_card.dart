@@ -6,7 +6,7 @@ import 'size_config.dart';
 class CheckoutCard extends StatelessWidget {
   CheckoutCard({this.total});
   final double total;
-  RazorpayService razorpayService = RazorpayService();
+  final RazorpayService razorpayService = RazorpayService();
 
   @override
   Widget build(BuildContext context) {

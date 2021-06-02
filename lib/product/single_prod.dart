@@ -71,15 +71,23 @@ class SingleProd extends StatelessWidget {
           footer: Container(
             height: getProportionateScreenHeight(60.0),
             color: Colors.white70,
-            child: ListTile(
-              leading: Text(
-                prodName,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              title: Text(
-                "₹$prodPrice",
-                style: TextStyle(
-                    color: Color(0xFFFF7675), fontWeight: FontWeight.w800),
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: getProportionateScreenHeight(10.0),
+                  left: getProportionateScreenWidth(10.0)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    prodName,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "₹$prodPrice",
+                    style: TextStyle(
+                        color: Color(0xFFFF7675), fontWeight: FontWeight.w800),
+                  ),
+                ],
               ),
             ),
           ),
