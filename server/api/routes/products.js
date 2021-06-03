@@ -40,6 +40,8 @@ router.get('/:productId', ProductsController.getOneProduct);
 
 router.get('/category/:categoryType', ProductsController.getCategoryProduct);
 
+router.get('/category/sort/:categoryType', ProductsController.getCategorySortedProduct);
+
 router.patch('/:productId', checkAuth,  ProductsController.updateOneProduct);
 
 router.delete('/:productId', checkAuth, ProductsController.deleteOneProduct);

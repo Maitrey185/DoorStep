@@ -96,13 +96,13 @@ exports.getCategoryProduct = (req, res, next) => {
 		.find({category: category})
 		.select('_id price model category productImage colour shape materialType stock_left date dimensions gender sold avgRating reviews')
 		.exec()
-		.then(product => {
-			if (product) {
-				res.status(200).json(product);
+		.then(products => {
+			if (products) {
+				res.status(200).json(products);
 			}
 			else {
 				res.status(404).json({
-					message: 'Product Not Found!'
+					message: 'Products Not Found!'
 				});
 			}
 		})
@@ -110,6 +110,37 @@ exports.getCategoryProduct = (req, res, next) => {
 			next(error);
 		});
 };
+
+exports.getCategorySortedProduct = (req, res, next) => {
+	const category = req.params.categoryType;
+	Product
+		.find({category: category})
+		.select('_id price model category productImage colour shape materialType stock_left date dimensions gender sold avgRating reviews')
+		.exec()
+		.then(products => {
+			if (products) {
+				for(var i=0; i<products.length-1; i++){
+					for(var j=0; j<products.length-i-1; j++){
+						if(products[j]['price'] > products[j+1]['price']){
+							var temp = products[j+1];
+							products[j+1] = products[j];
+							products[j] = temp;
+						}
+					}
+				}
+				res.status(200).json(products);
+			}
+			else {
+				res.status(404).json({
+					message: 'Products Not Found!'
+				});
+			}
+		})
+		.catch(error => {
+			next(error);
+		});
+};
+
 
 exports.updateOneProduct = (req, res, next) => {
 	const productId = req.params.productId;

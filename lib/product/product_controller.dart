@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:shape_cam/cart/size_config.dart';
 import 'package:shape_cam/product/products.dart';
 import 'package:flutter_config/flutter_config.dart';
 
@@ -22,6 +23,7 @@ class _AllProductsState extends State<AllProducts> {
   var name2 = "";
   var picture2 = "";
   var price2 = "";
+  bool sort = false;
 
   @override
   void initState() {
@@ -30,8 +32,14 @@ class _AllProductsState extends State<AllProducts> {
   }
 
   Future<void> updateUI() async {
-    http.Response response = await http.get(
-        "${FlutterConfig.get('SERVER_URL')}products/category/${widget.category}");
+    http.Response response;
+    if (sort) {
+      response = await http.get(
+          "${FlutterConfig.get('SERVER_URL')}products/category/sort/${widget.category}");
+    } else {
+      response = await http.get(
+          "${FlutterConfig.get('SERVER_URL')}products/category/${widget.category}");
+    }
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
@@ -52,8 +60,10 @@ class _AllProductsState extends State<AllProducts> {
           String s4 = data[i + 1]['productImage'].toString().split('\\')[1];
           picture2 = '$s3/$s4';
 
-          ls.add(new Products(
-              id1, id2, name1, name2, picture1, picture2, price1, price2));
+          ls.add(
+            new Products(
+                id1, id2, name1, name2, picture1, picture2, price1, price2),
+          );
         }
       });
     } else {
@@ -63,8 +73,57 @@ class _AllProductsState extends State<AllProducts> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: ls,
+    return Padding(
+      padding: EdgeInsets.only(top: getProportionateScreenHeight(8.0)),
+      child: Column(
+        children: [
+          SizedBox(
+            height: getProportionateScreenHeight(40.0),
+            child: Container(
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        setState(() {
+                          sort = true;
+                        });
+                        updateUI();
+                      },
+                      child: Text(
+                        "Sort by Price",
+                        style: TextStyle(
+                          color: Color(0xFFFF7675),
+                          fontWeight: FontWeight.bold,
+                          fontSize: getProportionateScreenWidth(18.0),
+                        ),
+                      )),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        sort = false;
+                      });
+                      updateUI();
+                    },
+                    child: Text(
+                      "Clear",
+                      style: TextStyle(
+                        color: Color(0xFFFF7675),
+                        fontWeight: FontWeight.bold,
+                        fontSize: getProportionateScreenWidth(18.0),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Column(
+            children: ls,
+          ),
+        ],
+      ),
     );
   }
 }

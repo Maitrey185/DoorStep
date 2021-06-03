@@ -103,7 +103,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     '${controller.imgUrl}'),
                                             fit: BoxFit.cover,
                                           ),
-                                        )),
+                                        ),
+                                    ),
                                   ],
                                 ),
                                 Padding(

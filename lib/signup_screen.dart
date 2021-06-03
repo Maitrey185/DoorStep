@@ -42,7 +42,7 @@ class _SignUpState extends State<SignUp> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/q.jpg"),
+            image: AssetImage("assets/images/q.jpg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -228,7 +228,7 @@ class _SignUpState extends State<SignUp> {
           CircleAvatar(
             radius: 55.0,
             backgroundImage: _imageFile == null
-                ? AssetImage('images/default_profile_pic.jpg')
+                ? AssetImage('assets/images/default_profile_pic.jpg')
                 : FileImage(File(_imageFile.path)),
           ),
           Positioned(

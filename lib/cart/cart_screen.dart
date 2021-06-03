@@ -56,7 +56,7 @@ class _CartScreenState extends State<CartScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      child: Image.asset("images/empty-cart.png"),
+                      child: Image.asset("assets/images/empty-cart.png"),
                     ),
                     TextButton(
                       onPressed: () async {
