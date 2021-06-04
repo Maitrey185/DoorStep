@@ -53,9 +53,9 @@ class _ProductReviewsState extends State<ProductReviews> {
                         RatingBar.readOnly(
                           size: getProportionateScreenHeight(20),
                           initialRating: widget.rating,
-                          filledColor: Color(0xFFFF7675),
-                          halfFilledColor: Color(0xFFFF7675),
-                          emptyColor: Color(0xFFFF7675),
+                          filledColor: Color(0xFFC0392B),
+                          halfFilledColor: Color(0xFFC0392B),
+                          emptyColor: Color(0xFFC0392B),
                           isHalfAllowed: true,
                           halfFilledIcon: Icons.star_half,
                           filledIcon: Icons.star,

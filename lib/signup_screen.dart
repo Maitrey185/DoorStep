@@ -197,7 +197,7 @@ class _SignUpState extends State<SignUp> {
                   //   height: 10.0,
                   // ),
                   RoundButton(
-                    colour: Color(0xFFFF7675),
+                    colour: Color(0xFFC0392B),
                     title: 'Sign Up',
                     onPressed: () {
                       postData(FlutterConfig.get('SERVER_URL') + 'user/signup');

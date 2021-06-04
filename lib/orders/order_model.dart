@@ -84,7 +84,7 @@ class OrdersModel extends StatelessWidget {
                         child: Text(
                           totalQuantity.toString(),
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Colors.black,
                             fontSize: getProportionateScreenHeight(16.0),
                           ),
                         ),
@@ -124,7 +124,7 @@ class OrdersModel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   RaisedButton(
-                    color: Color(0xFFFF7675),
+                    color: Color(0xFFC0392B),
                     padding: EdgeInsets.only(
                         left: getProportionateScreenWidth(24.0),
                         right: getProportionateScreenWidth(24.0),

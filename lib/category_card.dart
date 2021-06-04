@@ -48,7 +48,7 @@ class CategoryCard extends StatelessWidget {
           child: Text(
             btnTitle,
             style: TextStyle(
-                color: Color(0xFFFF7675), fontWeight: FontWeight.bold),
+                color: Color(0xFFC0392B), fontWeight: FontWeight.bold),
           ),
         ),
       ],

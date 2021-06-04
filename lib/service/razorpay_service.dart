@@ -38,7 +38,7 @@ class RazorpayService {
       'amount': amount,
       'prefill': {'contact': number, 'email': email},
       'theme': {
-        'color': '#FF7675',
+        'color': '#C0392B',
       }
     };
 

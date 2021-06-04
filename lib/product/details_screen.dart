@@ -15,7 +15,7 @@ class DetailsScreen extends StatelessWidget {
     SizeConfig().init(context);
 
     return Scaffold(
-      backgroundColor: Color(0xFFFF7675),
+      backgroundColor: Color(0xFFC0392B),
       appBar: buildAppBar(context),
       body: Body(product: product),
     );
@@ -23,7 +23,7 @@ class DetailsScreen extends StatelessWidget {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: Color(0xFFFF7675),
+      backgroundColor: Color(0xFFC0392B),
       elevation: 0,
       leading: TextButton(
         child: Icon(
@@ -34,9 +34,10 @@ class DetailsScreen extends StatelessWidget {
         onPressed: () => Navigator.pop(context),
       ),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: Icon(
             Icons.shopping_cart,
+            color: Colors.white,
             size: 30.0,
           ),
           onPressed: () {

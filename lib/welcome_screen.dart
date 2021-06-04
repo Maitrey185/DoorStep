@@ -24,14 +24,14 @@ class WelcomeScreen extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     image: new DecorationImage(
-                      image: AssetImage("assets/images/bg.jpg"),
+                      image: AssetImage("assets/images/w1.jpg"),
                       fit: BoxFit.cover,
                     ),
                   ),
                   alignment: Alignment.center,
                   padding: EdgeInsets.only(
-                      top: getProportionateScreenHeight(150.0),
-                      bottom: getProportionateScreenHeight(100.0)),
+                      top: getProportionateScreenHeight(180.0),
+                      bottom: getProportionateScreenHeight(180.0)),
                   child: Column(
                     children: <Widget>[
                       Padding(
@@ -43,11 +43,11 @@ class WelcomeScreen extends StatelessWidget {
                             textStyle: TextStyle(
                                 fontSize: getProportionateScreenHeight(60.0),
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black),
+                                color: Color(0xFFF2EAEB)),
                           ),
                         ),
                       ),
-                      SizedBox(height: getProportionateScreenHeight(40.0))
+                      SizedBox(height: getProportionateScreenHeight(20.0))
                     ],
                   ),
                 ),
@@ -62,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         horizontal: getProportionateScreenWidth(24.0)),
                     child: RoundButton(
-                        colour: Color(0xFFFF7675),
+                        colour: Color(0xFFC0392B),
                         title: 'Sign Up',
                         onPressed: () {
                           Get.to(SignUp());
@@ -72,7 +72,7 @@ class WelcomeScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         horizontal: getProportionateScreenWidth(24.0)),
                     child: RoundButton(
-                        colour: Color(0xFFFFBBA3),
+                        colour: Color(0xFFC0392B),
                         title: 'Login',
                         onPressed: () {
                           Get.to(LoginScreen());

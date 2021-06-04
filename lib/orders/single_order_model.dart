@@ -13,7 +13,6 @@ class ItemModel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    var _theme = Theme.of(context);
     return Padding(
         padding: EdgeInsets.only(bottom: getProportionateScreenHeight(15.0)),
         child: Container(
@@ -29,10 +28,11 @@ class ItemModel extends StatelessWidget {
                       offset: Offset(0.0, getProportionateScreenHeight(8.0)))
                 ],
                 color: Colors.white),
-            child: Stack(children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Container(
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(8.0)),
+                  child: Container(
                     width: getProportionateScreenWidth(100),
                     child: Image.network(
                       FlutterConfig.get('SERVER_URL') + image,
@@ -41,62 +41,55 @@ class ItemModel extends StatelessWidget {
                       width: getProportionateScreenWidth(100),
                     ),
                   ),
-                  Container(
-                      padding: EdgeInsets.only(
-                          left: getProportionateScreenWidth(15.0)),
-                      width: getProportionateScreenWidth(200),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Container(
-                                    width: getProportionateScreenWidth(100),
-                                    child: Text(name,
-                                        style: _theme.textTheme.display1
-                                            .copyWith(
-                                                fontSize:
-                                                    getProportionateScreenHeight(
-                                                        20.0),
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black)),
-                                  ),
-                                ]),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    bottom:
-                                        getProportionateScreenHeight(4) * 2)),
-                            Row(children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Row(children: <Widget>[
-                                      Text('Units: ',
-                                          style: _theme.textTheme.body1.copyWith(
-                                              fontSize:
-                                                  getProportionateScreenHeight(
-                                                      20.0))),
-                                      Text(quantity.toString(),
-                                          style: _theme.textTheme.body1.copyWith(
-                                              fontSize:
-                                                  getProportionateScreenHeight(
-                                                      20.0),
-                                              color: Colors.black)),
-                                    ])),
-                              ),
-                              Container(
-                                alignment: Alignment.centerRight,
-                                child: Text('₹' + (price).toString(),
-                                    textAlign: TextAlign.right,
-                                    style: _theme.textTheme.display1.copyWith(
-                                        fontSize:
-                                            getProportionateScreenWidth(18.0))),
-                              )
-                            ])
-                          ]))
-                ],
-              ),
-            ])));
+                ),
+                Container(
+                    padding: EdgeInsets.only(
+                        left: getProportionateScreenWidth(15.0)),
+                    width: getProportionateScreenWidth(200),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(name,
+                              style:
+                                  TextStyle(
+                                      fontSize:
+                                          getProportionateScreenHeight(
+                                              20.0),
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black)),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  bottom:
+                                      getProportionateScreenHeight(4) * 2)),
+                          Row(children: <Widget>[
+                            Expanded(
+                              child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: Row(children: <Widget>[
+                                    Text('Units: ',
+                                        style: TextStyle(
+                                            fontSize:
+                                                getProportionateScreenHeight(
+                                                    20.0)),),
+                                    Text(quantity.toString(),
+                                        style: TextStyle(
+                                            fontSize:
+                                                getProportionateScreenHeight(
+                                                    20.0),
+                                            color: Colors.black)),
+                                  ]),),
+                            ),
+                            Container(
+                              alignment: Alignment.centerRight,
+                              child: Text('₹' + (price).toString(),
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                      fontSize:
+                                          getProportionateScreenWidth(18.0),),),
+                            ),
+                          ],),
+                        ],),),
+              ],
+            ),),);
   }
 }

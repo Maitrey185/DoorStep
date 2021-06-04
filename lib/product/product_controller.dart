@@ -94,7 +94,7 @@ class _AllProductsState extends State<AllProducts> {
                       child: Text(
                         "Sort by Price",
                         style: TextStyle(
-                          color: Color(0xFFFF7675),
+                          color: Color(0xFFC0392B),
                           fontWeight: FontWeight.bold,
                           fontSize: getProportionateScreenWidth(18.0),
                         ),
@@ -109,7 +109,7 @@ class _AllProductsState extends State<AllProducts> {
                     child: Text(
                       "Clear",
                       style: TextStyle(
-                        color: Color(0xFFFF7675),
+                        color: Color(0xFFC0392B),
                         fontWeight: FontWeight.bold,
                         fontSize: getProportionateScreenWidth(18.0),
                       ),

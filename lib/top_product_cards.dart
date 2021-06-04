@@ -28,7 +28,7 @@ class TopProductCards extends StatelessWidget {
             child: Text(
               "Top Products",
               style: TextStyle(
-                  color: Color(0xFFFF7675),
+                  color: Color(0xFFC0392B),
                   fontSize: getProportionateScreenHeight(25.0),
                   fontWeight: FontWeight.bold),
             ),

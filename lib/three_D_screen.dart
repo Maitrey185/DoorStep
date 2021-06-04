@@ -23,7 +23,7 @@ class _ThreeDScreenState extends State<ThreeDScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFFF7675),
+        backgroundColor: Color(0xFFC0392B),
         title: Text(widget.name),
       ),
       body: Container(

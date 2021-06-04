@@ -26,7 +26,7 @@ class CategoryPage extends StatelessWidget {
               backgroundColor: Color(0xFFF2EAEB),
               appBar: new AppBar(
                 elevation: 0.1,
-                backgroundColor: Color(0xFFFF7675),
+                backgroundColor: Color(0xFFC0392B),
                 title: Text(title),
                 actions: <Widget>[
                   new IconButton(

@@ -145,7 +145,7 @@ class _ProductInfoState extends State<ProductInfo> {
                   );
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: Color(0xFFFF7675),
+                  backgroundColor: Color(0xFFC0392B),
                   padding: EdgeInsets.only(
                       left: getProportionateScreenWidth(24.0),
                       right: getProportionateScreenWidth(24.0),
@@ -205,9 +205,9 @@ class _ProductInfoState extends State<ProductInfo> {
               child: RatingBar.readOnly(
                 size: getProportionateScreenHeight(40),
                 initialRating: widget.product.rating.toDouble(),
-                filledColor: Color(0xFFFF7675),
-                halfFilledColor: Color(0xFFFF7675),
-                emptyColor: Color(0xFFFF7675),
+                filledColor: Color(0xFFC0392B),
+                halfFilledColor: Color(0xFFC0392B),
+                emptyColor: Color(0xFFC0392B),
                 isHalfAllowed: true,
                 halfFilledIcon: Icons.star_half,
                 filledIcon: Icons.star,
@@ -233,7 +233,7 @@ class _ProductInfoState extends State<ProductInfo> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
                     border: Border.all(
-                      color: Color(0xFFFF7675),
+                      color: Color(0xFFC0392B),
                     ),
                   ),
                   child: TextButton(
@@ -293,7 +293,7 @@ class _ProductInfoState extends State<ProductInfo> {
                   child: FlatButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18)),
-                    color: Color(0xFFFF7675),
+                    color: Color(0xFFC0392B),
                     onPressed: () {
                       if (!isProductInCart) {
                         final cartItem = CartItem(
@@ -326,7 +326,7 @@ class _ProductInfoState extends State<ProductInfo> {
           height: getProportionateScreenHeight(45.0),
           child: Divider(
             thickness: 1.0,
-            color: Color(0xFFFF7675),
+            color: Color(0xFFC0392B),
             indent: getProportionateScreenWidth(5.0),
             endIndent: getProportionateScreenWidth(5.0),
           ),
@@ -338,7 +338,7 @@ class _ProductInfoState extends State<ProductInfo> {
           child: Text(
             "Top Reviews",
             style: TextStyle(
-                color: Color(0xFFFF7675),
+                color: Color(0xFFC0392B),
                 fontSize: getProportionateScreenHeight(25.0),
                 fontWeight: FontWeight.bold),
           ),
@@ -354,7 +354,7 @@ class _ProductInfoState extends State<ProductInfo> {
                 child: Text(
                   "No Reviews Yet",
                   style: TextStyle(
-                      color: Color(0xFFFF7675),
+                      color: Color(0xFFC0392B),
                       fontSize: getProportionateScreenHeight(15.0)),
                 ),
               )
@@ -371,7 +371,7 @@ class _ProductInfoState extends State<ProductInfo> {
             style: TextButton.styleFrom(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18)),
-              backgroundColor: Color(0xFFFF7675),
+              backgroundColor: Color(0xFFC0392B),
             ),
             onPressed: () {
               Scaffold.of(context).showBottomSheet(

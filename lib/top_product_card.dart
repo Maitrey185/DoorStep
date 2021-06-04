@@ -89,7 +89,7 @@ class TopProductCard extends StatelessWidget {
               child: Text(
                 'Explore More',
                 style: TextStyle(
-                    color: Color(0xFFFF7675), fontWeight: FontWeight.bold),
+                    color: Color(0xFFC0392B), fontWeight: FontWeight.bold),
               ),
             ),
           ],

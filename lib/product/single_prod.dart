@@ -85,7 +85,7 @@ class SingleProd extends StatelessWidget {
                   Text(
                     "₹$prodPrice",
                     style: TextStyle(
-                        color: Color(0xFFFF7675), fontWeight: FontWeight.w800),
+                        color: Color(0xFFC0392B), fontWeight: FontWeight.w800),
                   ),
                 ],
               ),

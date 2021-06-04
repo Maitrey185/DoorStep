@@ -26,7 +26,7 @@ class MainShop extends StatelessWidget {
             backgroundColor: Color(0xFFF2EAEB),
             appBar: new AppBar(
               elevation: 0.1,
-              backgroundColor: Color(0xFFFF7675),
+              backgroundColor: Color(0xFFC0392B),
               title: Text('ShapeCam'),
               actions: <Widget>[
                 new IconButton(
@@ -85,7 +85,7 @@ class MainShop extends StatelessWidget {
                           child: Text(
                             "Browse Category Wise",
                             style: TextStyle(
-                                color: Color(0xFFFF7675),
+                                color: Color(0xFFC0392B),
                                 fontSize: getProportionateScreenHeight(25.0),
                                 fontWeight: FontWeight.bold),
                           ),

@@ -19,11 +19,14 @@ class OrderDetails extends StatefulWidget {
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
+
+
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     var width = MediaQuery.of(context).size.width;
-
+    String payMethod = widget.payMethod.toString().split("")[0].toUpperCase()+widget.payMethod.toString().substring(1);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildAppBar(context),
@@ -106,7 +109,8 @@ class _OrderDetailsState extends State<OrderDetails> {
             SizedBox(
               height: getProportionateScreenHeight(25.0),
             ),
-            buildSummaryLine('Payment Methods:', widget.payMethod, width),
+
+            buildSummaryLine('Payment Methods:', payMethod, width),
             SizedBox(
               height: getProportionateScreenHeight(25.0),
             ),
@@ -126,7 +130,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                       subject: 'Feedback',
                       body: '',
                     ),
-                    color: Colors.black,
+                    color: Color(0xFFC0392B),
                     padding: EdgeInsets.only(
                         left: getProportionateScreenWidth(24.0),
                         right: getProportionateScreenWidth(24.0),
@@ -147,7 +151,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(6.0)),
                   child: RaisedButton(
                     onPressed: () => Utils.openPhoneCall(phoneNumber: '+919359187909'),
-                    color: Colors.black,
+                    color: Color(0xFFC0392B),
                     padding: EdgeInsets.only(
                         left: getProportionateScreenWidth(24.0),
                         right: getProportionateScreenWidth(24.0),
@@ -173,7 +177,7 @@ class _OrderDetailsState extends State<OrderDetails> {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: Color(0xFFFF7675),
+      backgroundColor: Color(0xFFC0392B),
       leading: TextButton(
         child: Icon(
           Icons.chevron_left,
@@ -191,6 +195,7 @@ class _OrderDetailsState extends State<OrderDetails> {
 }
 
 Column buildSummaryLine(String label, String text, double width) {
+
   return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     mainAxisAlignment: MainAxisAlignment.start,

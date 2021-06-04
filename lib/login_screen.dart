@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: getProportionateScreenHeight(12.0),
                   ),
                   RoundButton(
-                      colour: Color(0xFFFF7675),
+                      colour: Color(0xFFC0392B),
                       title: 'LogIn',
                       onPressed: () async {
                         print(FlutterConfig.get('SERVER_URL'));

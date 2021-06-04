@@ -67,7 +67,7 @@ class _CartScreenState extends State<CartScreen> {
                         Get.to(MainShop(id, token));
                       },
                       style: TextButton.styleFrom(
-                        backgroundColor: Color(0xFFFF7675),
+                        backgroundColor: Color(0xFFC0392B),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -125,7 +125,7 @@ class _CartScreenState extends State<CartScreen> {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: Color(0xFFFF7675),
+      backgroundColor: Color(0xFFC0392B),
       leading: TextButton(
         child: Icon(
           Icons.chevron_left,

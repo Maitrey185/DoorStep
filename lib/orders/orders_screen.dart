@@ -28,7 +28,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: Color(0xFFFF7675),
+      backgroundColor: Color(0xFFC0392B),
       leading: TextButton(
         child: Icon(
           Icons.chevron_left,
