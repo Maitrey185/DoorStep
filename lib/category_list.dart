@@ -53,18 +53,18 @@ class CategoryList extends StatelessWidget {
         CategoryCard(
           id: id,
           token: token,
-          btnTitle: "Electronics",
+          btnTitle: "Computer and Electronics",
           imgUrl:
               "https://images.unsplash.com/photo-1588459460688-561668329db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1096&q=80",
-          category: "electronics",
+          category: "comp_ele",
         ),
         CategoryCard(
           id: id,
           token: token,
-          btnTitle: "Computer Peripherals",
+          btnTitle: "Apparel",
           imgUrl:
-              "https://images.unsplash.com/photo-1527600478564-488952effedb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
-          category: "computer",
+              "https://images.unsplash.com/photo-1445205170230-053b83016050?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80",
+          category: "apparel",
         ),
       ],
     );

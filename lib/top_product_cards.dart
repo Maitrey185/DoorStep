@@ -42,17 +42,16 @@ class TopProductCards extends StatelessWidget {
             ),
           ),
           TopProductCard(
-            id: id,
-            token: token,
-            img1:
-                "${FlutterConfig.get('SERVER_URL')}uploads/1622608645043c_6.PNG",
-            img2:
-                "${FlutterConfig.get('SERVER_URL')}uploads/1622608931138c_4.PNG",
-            category: "computer",
-            btnTitle: "Computer Peripherals",
-            imgUrl:
-                "https://images.unsplash.com/photo-1527600478564-488952effedb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
-          ),
+              id: id,
+              token: token,
+              img1:
+                  "${FlutterConfig.get('SERVER_URL')}uploads/1622734842373space.PNG",
+              img2:
+                  "${FlutterConfig.get('SERVER_URL')}uploads/1622734818855s_1.PNG",
+              category: "apparel",
+              btnTitle: "Apparel",
+              imgUrl:
+                  "https://images.unsplash.com/photo-1445205170230-053b83016050?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80"),
           SizedBox(
             child: Divider(
               color: Colors.black,
@@ -64,11 +63,11 @@ class TopProductCards extends StatelessWidget {
             id: id,
             token: token,
             img1:
-                "${FlutterConfig.get('SERVER_URL')}uploads/1622609220863e_2.PNG",
+                "${FlutterConfig.get('SERVER_URL')}uploads/1622729524696img.PNG",
             img2:
                 "${FlutterConfig.get('SERVER_URL')}uploads/1622609133634e_5.PNG",
-            category: "electronics",
-            btnTitle: "Electronics",
+            category: "comp_ele",
+            btnTitle: "Computer and Electronics",
             imgUrl:
                 "https://images.unsplash.com/photo-1588459460688-561668329db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1096&q=80",
           ),

@@ -15,14 +15,7 @@ exports.getAllProducts = (req, res, next) => {
 						model: product.model,
 						price: product.price,
 						productImage: product.productImage,
-						colour: product.colour,
-						shape: product.shape,
-						materialType: product.materialType,
-						stock_left: product.stock_left,
 						date: product.date,
-						dimensions: product.dimensions,
-						gender: product.gender,
-						sold: product.sold,
 						avgRating: product.avgRating,
 						reviews: product.reviews,
 						category: product.category
@@ -49,14 +42,7 @@ exports.createOneProduct = (req, res, next) => {
 					model: product.model,
 					price: product.price,
 					productImage: product.productImage,
-					colour: product.colour,
-					shape: product.shape,
-					materialType: product.materialType,
-					stock_left: product.stock_left,
 					date: product.date,
-					dimensions: product.dimensions,
-					gender: product.gender,
-					sold: product.sold,
 					avgRating: product.avgRating,
 					reviews: product.reviews,
 					category: product.category
@@ -73,7 +59,7 @@ exports.getOneProduct = (req, res, next) => {
 	const id = req.params.productId;
 	Product
 		.findById(id)
-		.select('_id price model category productImage colour shape materialType stock_left date dimensions gender sold avgRating reviews')
+		.select('_id price model category productImage date avgRating reviews')
 		.exec()
 		.then(product => {
 			if (product) {
@@ -94,7 +80,7 @@ exports.getCategoryProduct = (req, res, next) => {
 	const category = req.params.categoryType;
 	Product
 		.find({category: category})
-		.select('_id price model category productImage colour shape materialType stock_left date dimensions gender sold avgRating reviews')
+		.select('_id price model category productImage date avgRating reviews')
 		.exec()
 		.then(products => {
 			if (products) {
@@ -115,7 +101,7 @@ exports.getCategorySortedProduct = (req, res, next) => {
 	const category = req.params.categoryType;
 	Product
 		.find({category: category})
-		.select('_id price model category productImage colour shape materialType stock_left date dimensions gender sold avgRating reviews')
+		.select('_id price model category productImage date avgRating reviews')
 		.exec()
 		.then(products => {
 			if (products) {
@@ -187,13 +173,6 @@ function createProduct(req) {
 		model: req.body.model,
 		price: req.body.price,
 		productImage: req.file.path,
-		dimensions: req.body.dimensions,
-		gender: req.body.gender,
-		colour: req.body.colour,
-		shape: req.body.shape,
-		materialType: req.body.materialType,
-		stock_left: req.body.stock_left,
-		sold: req.body.sold,
 		avgRating: req.body.avgRating,
 		reviews: req.body.reviews,
 		category: req.body.category

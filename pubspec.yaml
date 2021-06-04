@@ -47,24 +47,11 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/60b70aa673aeaa33146f0de8/
-    - assets/60b70ae373aeaa33146f0de9/
-    - assets/60b70b0573aeaa33146f0dea/
-    - assets/60b70b3d73aeaa33146f0deb/
-    - assets/60b70b5273aeaa33146f0dec/
-    - assets/60b70bbd73aeaa33146f0ded/
-    - assets/60b70bf773aeaa33146f0dee/
-    - assets/60b70c2373aeaa33146f0def/
     - assets/60b70cd673aeaa33146f0df1/
     - assets/60b70ced73aeaa33146f0df2/
-    - assets/60b70d1173aeaa33146f0df3/
-    - assets/60b70d4473aeaa33146f0df4/
     - assets/60b70d9873aeaa33146f0df5/
-    - assets/60b70dc173aeaa33146f0df6/
-    - assets/60b70df373aeaa33146f0df7/
-    - assets/60b70e2473aeaa33146f0df8/
     - assets/60b70e8c73aeaa33146f0df9/
-    - assets/60b70eaa73aeaa33146f0dfa/
+    - assets/60b8bb6f29824536f096a6f2/
     - assets/60b70ec073aeaa33146f0dfb/
     - assets/60b70ee573aeaa33146f0dfc/
     - assets/60b70efc73aeaa33146f0dfd/
@@ -95,5 +82,18 @@ flutter:
     - assets/60b712d373aeaa33146f0e16/
     - assets/60b712ef73aeaa33146f0e17/
     - assets/60b7131173aeaa33146f0e18/
+    - assets/60b8e28cc133823990ddde30/
+    - assets/60b8e2bac133823990ddde31/
+    - assets/60b8e31bc133823990ddde33/
+    - assets/60b8e334c133823990ddde34/
+    - assets/60b8e34ac133823990ddde35/
+    - assets/60b8f744d27e3016c81ff86e/
+    - assets/60b8f75fd27e3016c81ff86f/
+    - assets/60b8f77cd27e3016c81ff870/
+    - assets/60b8f7afd27e3016c81ff871/
+    - assets/60b8f7cad27e3016c81ff872/
+    - assets/60b8f7e2d27e3016c81ff873/
+    - assets/60b8f7fad27e3016c81ff874/
+    - assets/60b8f812d27e3016c81ff875/
 
 
