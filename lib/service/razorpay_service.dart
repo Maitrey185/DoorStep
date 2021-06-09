@@ -2,6 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:shape_cam/main_shopping_page.dart';
+import 'package:shape_cam/service/mail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
@@ -74,6 +75,8 @@ class RazorpayService {
       }),
     );
     print(res.statusCode);
+
+    //sendMail(email);
     Get.to(MainShop(id, token));
   }
 
