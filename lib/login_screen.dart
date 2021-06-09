@@ -113,7 +113,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               const Radius.circular(10.0)),
                           borderSide:
                               BorderSide(width: 1, color: Colors.black)),
-                      //suffixIcon: "assets/icons/Lock.svg",
                     ),
                   ),
                   SizedBox(

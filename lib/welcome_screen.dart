@@ -38,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             horizontal: getProportionateScreenWidth(1.0)),
                         child: Text(
-                          "ShapeCam",
+                          "@DoorStep",
                           style: GoogleFonts.raleway(
                             textStyle: TextStyle(
                                 fontSize: getProportionateScreenHeight(60.0),

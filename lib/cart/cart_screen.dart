@@ -19,7 +19,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   int cartLength = 0;
   var uuid = Uuid();
-  double total = 0.0;
+  double total;
   String id = "";
 
   @override
@@ -30,6 +30,7 @@ class _CartScreenState extends State<CartScreen> {
 
   Future<void> getBox() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    total = 0.0;
     setState(() {
       id = prefs.getString("id");
       var cartBox = Hive.box('cartBox$id');
@@ -96,9 +97,8 @@ class _CartScreenState extends State<CartScreen> {
                             direction: DismissDirection.endToStart,
                             onDismissed: (direction) {
                               setState(() {
-                                total = total - cartItem.product.price;
                                 cartBox.deleteAt(index);
-                                //getBox();
+                                getBox();
                               });
                             },
                             background: Container(

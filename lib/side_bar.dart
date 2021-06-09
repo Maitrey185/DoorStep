@@ -36,8 +36,9 @@ class SideBar extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 55,
-                    backgroundColor: Colors.orangeAccent,
+                    backgroundColor: Colors.white,
                     child: CircleAvatar(
+                      backgroundColor: Colors.white,
                       radius: 60,
                       backgroundImage: NetworkImage(
                           FlutterConfig.get('SERVER_URL') + '$imgUrl'),

@@ -27,7 +27,7 @@ class MainShop extends StatelessWidget {
             appBar: new AppBar(
               elevation: 0.1,
               backgroundColor: Color(0xFFC0392B),
-              title: Text('ShapeCam'),
+              title: Text('@DoorStep'),
               actions: <Widget>[
                 new IconButton(
                     icon: Icon(

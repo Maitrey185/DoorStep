@@ -33,7 +33,7 @@ class ReviewSheet extends StatelessWidget {
             child: Text(
               "Rate this Product",
               style: TextStyle(
-                  color: Color(0xFFFF7675),
+                  color: Color(0xFFC0392B),
                   fontSize: getProportionateScreenHeight(15.0)),
             ),
           ),
@@ -45,9 +45,9 @@ class ReviewSheet extends StatelessWidget {
               rating = val;
             },
             size: getProportionateScreenHeight(35),
-            filledColor: Color(0xFFFF7675),
-            halfFilledColor: Color(0xFFFF7675),
-            emptyColor: Color(0xFFFF7675),
+            filledColor: Colors.red,
+            halfFilledColor: Colors.red,
+            emptyColor: Colors.red,
             isHalfAllowed: true,
             halfFilledIcon: Icons.star_half,
             filledIcon: Icons.star,
@@ -79,7 +79,9 @@ class ReviewSheet extends StatelessWidget {
             height: getProportionateScreenHeight(40.0),
             width: getProportionateScreenWidth(240.0),
             child: TextButton(
-              style: TextButton.styleFrom(backgroundColor: Color(0xFFFF7675)),
+              style: TextButton.styleFrom(
+                backgroundColor: Color(0xFFC0392B),
+              ),
               onPressed: () async {
                 var dt = DateTime.now();
                 var newFormat = DateFormat("yyyy-MM-dd");
