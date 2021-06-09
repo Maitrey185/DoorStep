@@ -5,10 +5,9 @@ import 'package:flutter_config/flutter_config.dart';
 
 class TopProductCards extends StatelessWidget {
   const TopProductCards({
-    Key key,
     @required this.id,
     @required this.token,
-  }) : super(key: key);
+  }) ;
 
   final String id;
   final String token;

@@ -9,12 +9,11 @@ import 'package:flutter_config/flutter_config.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({
-    Key key,
     @required this.id,
     @required this.token,
     @required this.imgUrl,
     @required this.name,
-  }) : super(key: key);
+  });
 
   final String id;
   final String token;
@@ -83,7 +82,7 @@ class SideBar extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
-                Icons.account_circle_outlined,
+                Icons.list_alt_outlined,
                 size: 30.0,
                 color: Colors.black,
               ),

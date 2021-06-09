@@ -5,10 +5,9 @@ import 'category_card.dart';
 
 class CategoryList extends StatelessWidget {
   const CategoryList({
-    Key key,
     @required this.id,
     @required this.token,
-  }) : super(key: key);
+  });
 
   final String id;
   final String token;

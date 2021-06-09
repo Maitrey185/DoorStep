@@ -126,7 +126,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(6.0)),
                   child: RaisedButton(
                     onPressed: () => Utils.openEmail(
-                      toEmail: 'maitreypatil185@gmail.com',
+                      toEmail: 'doorstep050@gmail.com',
                       subject: 'Feedback',
                       body: '',
                     ),
