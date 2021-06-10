@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'cart/size_config.dart';
 import 'category_card.dart';
 

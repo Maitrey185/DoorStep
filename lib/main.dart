@@ -34,9 +34,9 @@ Future<void> isLoggedInAndAuth(var email, var id, var token) async {
     'Authorization': 'Bearer $token',
   });
   if (response.statusCode == 200 && email != null) {
-    runApp(MyApp(true, id, token));
+    runApp(MyApp(isLoggedIn: true, id: id, token: token));
   } else {
-    runApp(MyApp(false, id, token));
+    runApp(MyApp(isLoggedIn: false, id: id, token: token));
   }
 }
 
@@ -45,7 +45,7 @@ class MyApp extends StatefulWidget {
   final token;
   final bool isLoggedIn;
 
-  MyApp(this.isLoggedIn, this.id, this.token);
+  MyApp({this.isLoggedIn, this.id, this.token});
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -55,6 +55,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       home: widget.isLoggedIn
           ? FutureBuilder(
               future: Hive.openBox('cartBox${widget.id}'),

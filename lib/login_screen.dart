@@ -132,7 +132,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       colour: Color(0xFFC0392B),
                       title: 'LogIn',
                       onPressed: () async {
-                        print(FlutterConfig.get('SERVER_URL'));
                         var res = await http.post(
                           FlutterConfig.get('SERVER_URL') + 'user/login',
                           headers: <String, String>{
@@ -149,7 +148,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         } else if (res.statusCode == 200) {
                           var data = jsonDecode(res.body);
-                          print(data["user"]["_id"]);
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           prefs.setString(
