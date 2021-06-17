@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:shape_cam/cart/size_config.dart';
 import 'package:shape_cam/side_bar.dart';
-import 'package:flutter_config/flutter_config.dart';
 import 'package:shape_cam/top_product_cards.dart';
 import 'package:shape_cam/user_data.dart';
 import 'package:get/get.dart';
@@ -53,16 +52,18 @@ class MainShop extends StatelessWidget {
                   child: Carousel(
                     boxFit: BoxFit.cover,
                     images: [
-                      Image.network(FlutterConfig.get('SERVER_URL') +
-                          'uploads/carousel_imgs/c1.jpg'),
-                      Image.network(FlutterConfig.get('SERVER_URL') +
-                          'uploads/carousel_imgs/c2.jpg'),
-                      Image.network(FlutterConfig.get('SERVER_URL') +
-                          'uploads/carousel_imgs/c3.jpg'),
-                      Image.network(FlutterConfig.get('SERVER_URL') +
-                          'uploads/carousel_imgs/c4.jpg'),
-                      Image.network(FlutterConfig.get('SERVER_URL') +
-                          'uploads/carousel_imgs/c5.jpg'),
+                      Image.network(
+                          "https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"),
+                      Image.network(
+                          "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"),
+                      Image.network(
+                          "https://images.unsplash.com/photo-1445205170230-053b83016050?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80"),
+                      Image.network(
+                          "https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80"),
+                      Image.network(
+                          "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"),
+                      Image.network(
+                          "https://images.unsplash.com/photo-1588459460688-561668329db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1096&q=80"),
                     ],
                     autoplay: true,
                     animationCurve: Curves.decelerate,

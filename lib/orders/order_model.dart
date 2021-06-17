@@ -58,10 +58,12 @@ class OrdersModel extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Text(orderDate.toString().substring(0, 10),
-                      style: TextStyle(
-                          fontSize: getProportionateScreenHeight(16.0),
-                          color: Colors.grey))
+                  Text(
+                    orderDate.toString().substring(0, 10),
+                    style: TextStyle(
+                        fontSize: getProportionateScreenHeight(16.0),
+                        color: Colors.grey),
+                  )
                 ],
               ),
               SizedBox(
@@ -80,7 +82,8 @@ class OrdersModel extends StatelessWidget {
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                            left: getProportionateScreenWidth(4.0)),
+                          left: getProportionateScreenWidth(4.0),
+                        ),
                         child: Text(
                           totalQuantity.toString(),
                           style: TextStyle(
@@ -146,7 +149,8 @@ class OrdersModel extends StatelessWidget {
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
-                          getProportionateScreenHeight(20.0)),
+                        getProportionateScreenHeight(20.0),
+                      ),
                     ),
                     child: Text(
                       'Details',
@@ -157,10 +161,12 @@ class OrdersModel extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Delivered",
+                    getStatus(orderDate.toString()),
                     style: TextStyle(
                         fontSize: getProportionateScreenHeight(16.0),
-                        color: Colors.green),
+                        color: getStatus(orderDate.toString()) == "Delivered"
+                            ? Colors.green
+                            : Colors.red),
                   ),
                 ],
               )
@@ -169,5 +175,24 @@ class OrdersModel extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  int daysBetween(DateTime from, DateTime to) {
+    from = DateTime(from.year, from.month, from.day);
+    to = DateTime(to.year, to.month, to.day);
+    return (to.difference(from).inHours / 24).round();
+  }
+
+  String getStatus(String orderedDate) {
+    int year = int.parse(orderedDate.substring(0, 4));
+    int month = int.parse(orderedDate.substring(5, 7));
+    int day = int.parse(orderedDate.substring(8, 10));
+
+    final dateOfOrder = DateTime(year, month, day);
+    final currDate = DateTime.now();
+    if (daysBetween(dateOfOrder, currDate) < 4)
+      return "Processing";
+    else
+      return "Delivered";
   }
 }
